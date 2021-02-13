@@ -1,4 +1,4 @@
-describe('Code', () => {
+describe('File', () => {
   it('should', () => {
     expect(true)
   })

@@ -22,9 +22,8 @@
     "url": "https://github.com/hiukky/eren"
   },
   "scripts": {
-    "test": "lerna run test",
-    "test:cov": "lerna run test:cov",
-    "dev": "lerna run dev --stream"
+    "test": "yarn jest",
+    "test:cov": "yarn jest --coverage"
   },
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",
