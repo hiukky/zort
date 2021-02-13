@@ -1,8 +1,16 @@
-import { FileHelper, ScssHelper, IScssSchema } from '@eren/core'
-import { ICode, ICodeProps, ICodeSchema } from './code.interface'
+import {
+  IBuilder,
+  IBuilderProps,
+  FileHelper,
+  ScssHelper,
+  IScssSchema,
+} from '@eren/core'
+import { ICodeOptions, ICodeProps, ICodeSchema } from './code.interface'
 
-export class Code implements ICode {
-  private props: ICodeProps
+export class Code<T extends string> implements IBuilder {
+  private props: IBuilderProps
+
+  private options: ICodeProps<T>
 
   private metadata: ICodeSchema
 
@@ -10,19 +18,34 @@ export class Code implements ICode {
 
   private themes: Record<string, ICodeSchema>[]
 
-  constructor(props: ICodeProps) {
+  constructor(props: IBuilderProps) {
     this.props = props
+    this.options = []
     this.metadata = {} as ICodeSchema
     this.variants = []
     this.themes = []
   }
 
   /**
-   * @name readMetadata
+   * @name defaultOptions
    *
-   * @desc Read all the metadata needed to build the theme.
+   * @desc List of predefined parameters.
    */
-  private readMetadata(): this {
+  private get defaultOptions(): ICodeOptions {
+    return {
+      type: 'dark',
+      fontStyle: ['bold'],
+    }
+  }
+
+  /**
+   * @name assemble
+   *
+   * @desc Initialize the module by loading the terms defined by the customer and the
+   *       metadata for construction.
+   */
+  private assemble(): this {
+    this.variants = ScssHelper.readAllForJSON(this.props.dir.themes)
     this.metadata = JSON.parse(
       FileHelper.read(`${process.cwd()}/meta/schema.json`),
     )
@@ -31,12 +54,22 @@ export class Code implements ICode {
   }
 
   /**
-   * @name readThemesVariants
+   * @name set
    *
-   * @desc Read all client-defined theme variant files.
+   * @desc Set custom options for the theme.
+   *
+   * @param options
    */
-  private readThemesVariants(): this {
-    this.variants = ScssHelper.readAllForJSON(this.props.dir.themes)
+  set<O extends ICodeProps<T>>(options: O): this {
+    if (Array.isArray(options) && options.length) {
+      this.options = Array.from(options).map(option => ({
+        ...this.defaultOptions,
+        ...option,
+      }))
+    } else {
+      this.options = { ...this.defaultOptions, ...options }
+    }
+
     return this
   }
 
@@ -62,8 +95,8 @@ export class Code implements ICode {
    *
    * @desc Build the themes.
    */
-  compile(): this {
-    this.readMetadata().readThemesVariants().setColors()
+  compile(): boolean {
+    this.assemble().setColors()
 
     this.themes.forEach(theme => {
       const [name, metadata] = Object.entries(theme)[0]
@@ -75,6 +108,6 @@ export class Code implements ICode {
       })
     })
 
-    return this
+    return true
   }
 }
