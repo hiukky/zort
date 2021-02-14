@@ -1,39 +1,44 @@
-export type InsomniaSize = 'default' | 'xxs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+export namespace ISchema {
+  export type Size = Record<
+    'default' | 'xxs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl',
+    string
+  >
 
-export type InsomniaColors =
-  | 'default'
-  | 'success'
-  | 'notice'
-  | 'warning'
-  | 'danger'
-  | 'surprise'
-  | 'info'
-
-export type InsomniaColorsSchema = Record<InsomniaColors, string>
-
-export type InsomniaSizeSchema = Record<InsomniaSize, string>
-
-export type InsomniaComponentSchema = {
-  background: InsomniaColorsSchema
-  foreground: InsomniaColorsSchema
-  highlight: InsomniaSizeSchema
+  export type Colors = Record<
+    | 'default'
+    | 'success'
+    | 'notice'
+    | 'warning'
+    | 'danger'
+    | 'surprise'
+    | 'info',
+    string
+  >
 }
 
-export type InsomniaSchema = {
-  theme: {
-    background: InsomniaColorsSchema
-    foreground: InsomniaColorsSchema
-    highlight: InsomniaSizeSchema
-    rawCss: string
-    styles: Record<
-      | 'dialog'
-      | 'dropdown'
-      | 'pane'
-      | 'paneHeader'
-      | 'sidebar'
-      | 'sidebarHeader'
-      | 'sidebarList',
-      InsomniaComponentSchema
-    >
+export namespace IInsomnia {
+  export type Component = {
+    background: ISchema.Colors
+    foreground: ISchema.Colors
+    highlight: ISchema.Size
+  }
+
+  export type Schema = {
+    theme: {
+      background: ISchema.Colors
+      foreground: ISchema.Colors
+      highlight: ISchema.Size
+      rawCss: string
+      styles: Record<
+        | 'dialog'
+        | 'dropdown'
+        | 'pane'
+        | 'paneHeader'
+        | 'sidebar'
+        | 'sidebarHeader'
+        | 'sidebarList',
+        IInsomnia.Component
+      >
+    }
   }
 }

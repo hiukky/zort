@@ -1,6 +1,6 @@
-import { FileHelper, IScssJSON, IScssSchema } from '..'
+import { File, ISCSS } from '..'
 
-export class ScssHelper {
+export class SCSS {
   /**
    * @name check
    *
@@ -25,7 +25,7 @@ export class ScssHelper {
    *
    * @param {String} file
    */
-  static toJSON(file: string): IScssJSON {
+  static toJSON(file: string): ISCSS.JSON {
     let data = {}
 
     if (file) {
@@ -48,17 +48,15 @@ export class ScssHelper {
    * @param {String} path
    * @param {String} fileName
    */
-  static read(path: string, fileName: string): IScssJSON {
-    const file = FileHelper.read(`${path}/${fileName}`).split(';')
+  static read(path: string, fileName: string): ISCSS.JSON {
+    const file = File.read(`${path}/${fileName}`).split(';')
 
     const [dependencies] = file
       .filter(row => /@import/.test(row))
       .map(row => {
         const key = row.split(' ')[1].slice(1, -1)
 
-        return this.toJSON(
-          FileHelper.read(`${path}/_${key.replace('./', '')}.scss`),
-        )
+        return this.toJSON(File.read(`${path}/_${key.replace('./', '')}.scss`))
       })
 
     const mergedDependencies = Object.entries(
@@ -80,7 +78,7 @@ export class ScssHelper {
    * @param source
    * @param target
    */
-  static merge<S, T extends IScssJSON>(source: S, target: T): S {
+  static merge<S, T extends ISCSS.JSON>(source: S, target: T): S {
     let output = source
 
     Object.keys(target).forEach(colorName => {
@@ -102,8 +100,8 @@ export class ScssHelper {
    *
    * @param path
    */
-  static readAllForJSON(path: string): IScssSchema[] {
-    return FileHelper.list(path)
+  static readAllForJSON(path: string): ISCSS.Schema {
+    return File.list(path)
       .filter(fileName => !fileName.startsWith('_'))
       .map(fileName => {
         this.check(fileName)
@@ -111,6 +109,6 @@ export class ScssHelper {
         return {
           [fileName.replace('.scss', '')]: this.read(path, fileName),
         }
-      })
+      })[0]
   }
 }

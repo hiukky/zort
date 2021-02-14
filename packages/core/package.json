@@ -19,11 +19,6 @@
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:cov": "jest --coverage",
-    "dev": "nodemon --watch '**/*.ts' --exec 'ts-node' sample/index.ts"
-  },
-  "devDependencies": {
-    "nodemon": "2.0.7",
-    "ts-node": "9.1.1"
+    "test:cov": "jest --coverage"
   }
 }

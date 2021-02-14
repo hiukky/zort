@@ -1,12 +1,12 @@
-import { Builder, FileHelper, IBuilderProps } from '@eren/core'
-import { InsomniaSchema } from './insomnia.interface'
+import { File, Builder, IBuilder } from '@eren/core'
+import { IInsomnia } from './insomnia.interface'
 
-export class Insomnia extends Builder {
-  private metadata: InsomniaSchema
+export class Insomnia extends Builder implements IBuilder.Common {
+  private metadata: IInsomnia.Schema
 
-  constructor(props: IBuilderProps) {
+  constructor(props: IBuilder.Props) {
     super(props)
-    this.metadata = {} as InsomniaSchema
+    this.metadata = {} as IInsomnia.Schema
 
     this.assemble()
   }
@@ -18,9 +18,7 @@ export class Insomnia extends Builder {
    *       metadata for construction.
    */
   private assemble(): this {
-    this.metadata = JSON.parse(
-      FileHelper.read(`${process.cwd()}/meta/schema.json`),
-    )
+    this.metadata = JSON.parse(File.read(`${process.cwd()}/meta/schema.json`))
 
     return this
   }

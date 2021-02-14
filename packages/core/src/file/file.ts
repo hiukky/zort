@@ -1,7 +1,7 @@
 import fs from 'fs'
-import { ICreate } from './file.interface'
+import { IFile } from './file.interface'
 
-export class FileHelper {
+export class File {
   /**
    * @name read
    *
@@ -34,7 +34,7 @@ export class FileHelper {
    * @param props.fileName
    * @param props.metadata
    */
-  static create({ path, fileName, matadata }: ICreate): boolean {
+  static create({ path, fileName, matadata }: IFile.Create): boolean {
     if (!fs.existsSync(path)) {
       fs.mkdirSync(path, { recursive: true })
     }

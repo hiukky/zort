@@ -1,15 +1,15 @@
-import { IBuilderProps, FileHelper, Builder } from '@eren/core'
-import { ICodeOptions, ICodeProps, ICodeSchema } from './code.interface'
+import { File, Builder, IBuilder } from '@eren/core'
+import { ICode } from './code.interface'
 
-export class Code<T extends string> extends Builder {
-  private options: ICodeProps<T>
+export class Code<T extends string> extends Builder implements IBuilder.Common {
+  private options: ICode.Props<T>
 
-  private metadata: ICodeSchema
+  private metadata: ICode.Schema
 
-  constructor(props: IBuilderProps) {
+  constructor(props: IBuilder.Props) {
     super(props)
     this.options = []
-    this.metadata = {} as ICodeSchema
+    this.metadata = {} as ICode.Schema
 
     this.assemble()
   }
@@ -19,7 +19,7 @@ export class Code<T extends string> extends Builder {
    *
    * @desc List of predefined parameters.
    */
-  private get defaultOptions(): ICodeOptions {
+  private get defaultOptions(): ICode.Options {
     return {
       type: 'dark',
       fontStyle: ['bold'],
@@ -33,9 +33,7 @@ export class Code<T extends string> extends Builder {
    *       metadata for construction.
    */
   private assemble(): this {
-    this.metadata = JSON.parse(
-      FileHelper.read(`${process.cwd()}/meta/schema.json`),
-    )
+    this.metadata = JSON.parse(File.read(`${process.cwd()}/meta/schema.json`))
 
     return this
   }
@@ -47,7 +45,7 @@ export class Code<T extends string> extends Builder {
    *
    * @param options
    */
-  set<O extends ICodeProps<T>>(options: O): this {
+  set<O extends ICode.Props<T>>(options: O): this {
     if (Array.isArray(options) && options.length) {
       this.options = Array.from(options).map(option => ({
         ...this.defaultOptions,
