@@ -1,29 +1,17 @@
-import {
-  IBuilder,
-  IBuilderProps,
-  FileHelper,
-  ScssHelper,
-  IScssSchema,
-} from '@eren/core'
+import { IBuilderProps, FileHelper, Builder } from '@eren/core'
 import { ICodeOptions, ICodeProps, ICodeSchema } from './code.interface'
 
-export class Code<T extends string> implements IBuilder {
-  private props: IBuilderProps
-
+export class Code<T extends string> extends Builder {
   private options: ICodeProps<T>
 
   private metadata: ICodeSchema
 
-  private variants: IScssSchema[]
-
-  private themes: Record<string, ICodeSchema>[]
-
   constructor(props: IBuilderProps) {
-    this.props = props
+    super(props)
     this.options = []
     this.metadata = {} as ICodeSchema
-    this.variants = []
-    this.themes = []
+
+    this.assemble()
   }
 
   /**
@@ -45,7 +33,6 @@ export class Code<T extends string> implements IBuilder {
    *       metadata for construction.
    */
   private assemble(): this {
-    this.variants = ScssHelper.readAllForJSON(this.props.dir.themes)
     this.metadata = JSON.parse(
       FileHelper.read(`${process.cwd()}/meta/schema.json`),
     )
@@ -74,40 +61,12 @@ export class Code<T extends string> implements IBuilder {
   }
 
   /**
-   * @name setColors
-   *
-   * @desc Merge metadata with client-defined color schema.
-   */
-  private setColors(): this {
-    this.themes = this.variants.map(schema => {
-      const [themeName, colors] = Object.entries(schema)[0]
-
-      return {
-        [`${themeName}.json`]: ScssHelper.merge(this.metadata, colors),
-      }
-    })
-
-    return this
-  }
-
-  /**
    * @name compile
    *
    * @desc Build the themes.
    */
   compile(): boolean {
-    this.assemble().setColors()
-
-    this.themes.forEach(theme => {
-      const [name, metadata] = Object.entries(theme)[0]
-
-      FileHelper.create({
-        path: this.props.dir.dist,
-        matadata: JSON.stringify(metadata),
-        fileName: name,
-      })
-    })
-
+    this.forFile(this.metadata, 'json')
     return true
   }
 }
