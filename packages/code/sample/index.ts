@@ -1,9 +1,10 @@
+import { resolve } from 'path'
 import { Code } from '../src/code'
 
-new Code<'flate' | 'flate.punk' | 'flate.arc'>({
+new Code<'eren'>({
   dir: {
     dist: `${__dirname}/dist`,
-    themes: `${__dirname}/themes`,
+    themes: resolve('../../mock'),
   },
 })
   .set({
