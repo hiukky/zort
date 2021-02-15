@@ -4,9 +4,13 @@ import { IUlauncher } from './ulauncher.interface'
 export class Ulauncher extends Builder implements IBuilder.Common {
   private metadata: IUlauncher.Schema
 
+  private themes: IBuilder.Theme
+
   constructor(props: IBuilder.Props) {
     super(props)
+
     this.metadata = {} as IUlauncher.Schema
+    this.themes = {} as IBuilder.Theme
 
     this.assemble()
   }
@@ -15,7 +19,7 @@ export class Ulauncher extends Builder implements IBuilder.Common {
     return ['manifest.json', 'theme-gtk-3.20.css', 'theme.css']
   }
 
-  assemble(): this {
+  private assemble(): this {
     Object.values(this.files).forEach(file => {
       const metadata = File.read(`${process.cwd()}/meta/${file}`)
 
@@ -27,8 +31,15 @@ export class Ulauncher extends Builder implements IBuilder.Common {
     return this
   }
 
+  private stage(): this {
+    Object.keys(this.variants).forEach(variant => {
+      this.themes[variant] = this.metadata
+    })
+
+    return this
+  }
+
   compile(): boolean {
-    this.forDir(this.metadata)
-    return true
+    return this.stage().build(this.themes)
   }
 }

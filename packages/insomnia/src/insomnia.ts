@@ -4,31 +4,42 @@ import { IInsomnia } from './insomnia.interface'
 export class Insomnia extends Builder implements IBuilder.Common {
   private metadata: IInsomnia.Schema
 
+  private themes: IBuilder.Theme
+
   constructor(props: IBuilder.Props) {
     super(props)
+
+    this.themes = {} as IBuilder.Theme
     this.metadata = {} as IInsomnia.Schema
 
     this.assemble()
   }
 
-  /**
-   * @name assemble
-   *
-   * @desc Initialize the module by loading the terms defined by the customer and the
-   *       metadata for construction.
-   */
   private assemble(): this {
     this.metadata = JSON.parse(File.read(`${process.cwd()}/meta/schema.json`))
+    return this
+  }
+
+  private manifestFor(
+    variant: string,
+  ): Record<'displayName' | 'variant' | 'name', string> {
+    return { displayName: this.themeName(variant), name: variant, variant }
+  }
+
+  private stage(): this {
+    Object.keys(this.variants).forEach(variant => {
+      this.themes[variant] = {
+        [`${variant}.json`]: JSON.stringify({
+          ...this.manifestFor(variant),
+          ...this.metadata,
+        }),
+      }
+    })
 
     return this
   }
 
-  /**
-   * @name compile
-   *
-   * @desc Build the themes.
-   */
   compile(): boolean {
-    return this.forFile(this.metadata, 'json')
+    return this.stage().build(this.themes)
   }
 }

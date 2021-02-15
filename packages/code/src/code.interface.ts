@@ -4,23 +4,18 @@ export namespace ISchema {
     fontStyle: 'none' | 'bold' | 'italic'
   }
 
+  export type IType = 'dark' | 'light'
+
   export type FontStyle = 'none' | 'bold' | 'italic'
 }
 
 export namespace ICode {
   export type Options = {
-    type: 'dark' | 'light'
+    type: ISchema.IType
     fontStyle: ISchema.FontStyle[]
   }
 
-  export type OptionsWithVariant<T> = Options & {
-    name?: string
-    variant: T
-  }
-
-  export type Props<T extends string> =
-    | Partial<Options>
-    | OptionsWithVariant<T>[]
+  export type Props = Options
 
   export type Schema = {
     colors: Record<string, string>

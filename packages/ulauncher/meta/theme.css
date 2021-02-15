@@ -1,12 +1,12 @@
 /**
  * Flate colors
  */
-@define-color background $primaryColor;
+@define-color background $primary-color;
 @define-color selected_hover  alpha ($grey, 0.5);
 @define-color foreground $white;
 @define-color foreground_title $grey;
 @define-color accent $white;
-@define-color highlight $secondaryColor;
+@define-color highlight $secondary-color;
 
 /**
    * App Window

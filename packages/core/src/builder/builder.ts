@@ -3,37 +3,37 @@ import { File, SCSS, IBuilder, ISCSS } from '..'
 export class Builder {
   private props: IBuilder.Props
 
-  private variants: ISCSS.Schema
+  protected variants: ISCSS.Schema
 
   constructor(props: IBuilder.Props) {
     this.props = props
     this.variants = SCSS.readAllForJSON(props.dir.themes)
   }
 
-  forDir<P>(payload: P): boolean {
-    Object.entries(this.variants).forEach(([variantName, colors]) => {
-      const merged = SCSS.merge(payload, colors)
+  themeName(variant: string) {
+    return variant
+      .split('.')
+      .map(word => `${word.charAt(0).toUpperCase()}${word.slice(1)}`)
+      .join(' ')
+  }
+
+  build(themes: IBuilder.Theme): boolean {
+    const { dist } = this.props.dir
+
+    Object.entries(themes).forEach(([themeName, files]) => {
+      const dirname =
+        Object.keys(files).length <= 1
+          ? dist
+          : `${dist}/${themeName.replace('.', '-')}`
+
+      const merged = SCSS.merge(files, this.variants[themeName])
 
       Object.entries(merged).forEach(([name, metadata]) => {
         File.create({
-          path: `${this.props.dir.dist}/${variantName}`,
+          path: dirname,
           fileName: name,
           matadata: metadata,
         })
-      })
-    })
-
-    return true
-  }
-
-  forFile<P>(payload: P, extension: 'json'): boolean {
-    Object.entries(this.variants).forEach(([fileName, colors]) => {
-      const merged = SCSS.merge(payload, colors)
-
-      File.create({
-        path: this.props.dir.dist,
-        fileName: `${fileName}.${extension}`,
-        matadata: JSON.stringify(merged),
       })
     })
 

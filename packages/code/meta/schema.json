@@ -99,7 +99,8 @@
         "support.type.object.module.js"
       ],
       "settings": {
-        "foreground": "$beige"
+        "foreground": "$beige",
+        "fontStyle": "$fontStyle"
       }
     },
     {
@@ -159,7 +160,8 @@
         "variable.other.readwrite.alias.tsx"
       ],
       "settings": {
-        "foreground": "$cyan"
+        "foreground": "$cyan",
+        "fontStyle": "$fontStyle"
       }
     },
     {
@@ -195,7 +197,8 @@
         "variable.scss"
       ],
       "settings": {
-        "foreground": "$purple"
+        "foreground": "$purple",
+        "fontStyle": "$fontStyle"
       }
     },
     {
@@ -233,7 +236,8 @@
         "variable"
       ],
       "settings": {
-        "foreground": "$red"
+        "foreground": "$red",
+        "fontStyle": "$fontStyle"
       }
     },
     {
@@ -258,7 +262,8 @@
         "variable.other.bare"
       ],
       "settings": {
-        "foreground": "$green"
+        "foreground": "$green",
+        "fontStyle": "$fontStyle"
       }
     },
     {
@@ -297,7 +302,8 @@
         "variable.language.fenced.markdown"
       ],
       "settings": {
-        "foreground": "$grey"
+        "foreground": "$grey",
+        "fontStyle": "$fontStyle"
       }
     },
     {
@@ -315,7 +321,8 @@
         "keyword.other.definition.trim_trailing_whitespace.editorconfig"
       ],
       "settings": {
-        "foreground": "$secondary-color"
+        "foreground": "$secondary-color",
+        "fontStyle": "$fontStyle"
       }
     },
     {
@@ -334,7 +341,8 @@
         "support.variable.property"
       ],
       "settings": {
-        "foreground": "$orange"
+        "foreground": "$orange",
+        "fontStyle": "$fontStyle"
       }
     },
     {
@@ -356,7 +364,8 @@
         "storage.type"
       ],
       "settings": {
-        "foreground": "$pink"
+        "foreground": "$pink",
+        "fontStyle": "$fontStyle"
       }
     },
     {
@@ -380,7 +389,8 @@
         "source.json"
       ],
       "settings": {
-        "foreground": "$quince"
+        "foreground": "$quince",
+        "fontStyle": "$fontStyle"
       }
     },
     {
@@ -400,14 +410,16 @@
         "support.type.sys-types"
       ],
       "settings": {
-        "foreground": "$spiced"
+        "foreground": "$spiced",
+        "fontStyle": "$fontStyle"
       }
     },
     {
       "name": "Squash",
       "scope": ["keyword.control.conditional", "keyword.control.switch"],
       "settings": {
-        "foreground": "$squash"
+        "foreground": "$squash",
+        "fontStyle": "$fontStyle"
       }
     },
     {
@@ -457,7 +469,8 @@
         "variable.parameter"
       ],
       "settings": {
-        "foreground": "$blush"
+        "foreground": "$blush",
+        "fontStyle": "$fontStyle"
       }
     },
     {
@@ -495,7 +508,8 @@
         "string"
       ],
       "settings": {
-        "foreground": "$yellow"
+        "foreground": "$yellow",
+        "fontStyle": "$fontStyle"
       }
     }
   ]

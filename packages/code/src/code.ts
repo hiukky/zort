@@ -1,70 +1,70 @@
 import { File, Builder, IBuilder } from '@zort/core'
-import { ICode } from './code.interface'
+import { ICode, ISchema } from './code.interface'
 
-export class Code<T extends string> extends Builder implements IBuilder.Common {
-  private options: ICode.Props<T>
+export class Code extends Builder implements IBuilder.Common {
+  private options: ICode.Props
 
   private metadata: ICode.Schema
 
+  private themes: IBuilder.Theme
+
   constructor(props: IBuilder.Props) {
     super(props)
-    this.options = []
+
+    this.themes = {} as IBuilder.Theme
     this.metadata = {} as ICode.Schema
+    this.options = {} as ICode.Options
 
     this.assemble()
   }
 
-  /**
-   * @name defaultOptions
-   *
-   * @desc List of predefined parameters.
-   */
-  private get defaultOptions(): ICode.Options {
-    return {
-      type: 'dark',
-      fontStyle: ['bold'],
-    }
-  }
-
-  /**
-   * @name assemble
-   *
-   * @desc Initialize the module by loading the terms defined by the customer and the
-   *       metadata for construction.
-   */
   private assemble(): this {
     this.metadata = JSON.parse(File.read(`${process.cwd()}/meta/schema.json`))
-
-    return this
-  }
-
-  /**
-   * @name set
-   *
-   * @desc Set custom options for the theme.
-   *
-   * @param options
-   */
-  set<O extends ICode.Props<T>>(options: O): this {
-    if (Array.isArray(options) && options.length) {
-      this.options = Array.from(options).map(option => ({
-        ...this.defaultOptions,
-        ...option,
-      }))
-    } else {
-      this.options = { ...this.defaultOptions, ...options }
+    this.options = {
+      type: 'dark',
+      fontStyle: ['none'],
     }
 
     return this
   }
 
-  /**
-   * @name compile
-   *
-   * @desc Build the themes.
-   */
+  private manifestFor(
+    variant: string,
+    type: ISchema.IType = 'dark',
+  ): Record<'name' | 'variant' | 'type', string> {
+    return { name: this.themeName(variant), variant, type }
+  }
+
+  private stage(): this {
+    const { type, fontStyle } = this.options
+
+    Object.keys(this.variants).forEach(variant => {
+      fontStyle.forEach(fontType => {
+        const themeName =
+          fontType === 'none'
+            ? `${variant}.json`
+            : `${variant}.${fontType}.json`
+
+        this.themes[variant] = {
+          ...this.themes[variant],
+          [themeName]: JSON.stringify({
+            ...this.manifestFor(variant, type),
+            ...this.metadata,
+          }).replaceAll('$fontStyle', fontType),
+        }
+      })
+    })
+
+    return this
+  }
+
+  set(options: ICode.Props): this {
+    this.options = { ...this.options, ...options }
+    return this
+  }
+
   compile(): boolean {
-    this.forFile(this.metadata, 'json')
+    this.stage().build(this.themes)
     return true
   }
 }
