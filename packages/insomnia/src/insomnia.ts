@@ -1,7 +1,8 @@
 import { File, Builder, IBuilder } from '@zort/core'
+import { join } from 'path'
 import { IInsomnia } from './insomnia.interface'
 
-export class Insomnia extends Builder implements IBuilder.Common {
+export class Insomnia extends Builder implements IInsomnia.Builder {
   private metadata: IInsomnia.Schema
 
   private themes: IBuilder.Theme
@@ -16,7 +17,9 @@ export class Insomnia extends Builder implements IBuilder.Common {
   }
 
   private assemble(): this {
-    this.metadata = JSON.parse(File.read(`${process.cwd()}/meta/schema.json`))
+    this.metadata = JSON.parse(
+      File.read(join(__dirname, '..', 'meta', 'schema.json')),
+    )
     return this
   }
 

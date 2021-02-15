@@ -1,3 +1,5 @@
+import { IBuilder } from '@zort/core'
+
 export namespace ISchema {
   export type Size = Record<
     'default' | 'xxs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl',
@@ -41,4 +43,6 @@ export namespace IInsomnia {
       >
     }
   }
+
+  export interface Builder extends IBuilder.Common {}
 }
