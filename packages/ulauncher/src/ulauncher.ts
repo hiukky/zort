@@ -1,7 +1,8 @@
 import { File, Builder, IBuilder } from '@zort/core'
+import { join } from 'path'
 import { IUlauncher } from './ulauncher.interface'
 
-export class Ulauncher extends Builder implements IBuilder.Common {
+export class Ulauncher extends Builder implements IUlauncher.Builder {
   private metadata: IUlauncher.Schema
 
   private themes: IBuilder.Theme
@@ -21,11 +22,7 @@ export class Ulauncher extends Builder implements IBuilder.Common {
 
   private assemble(): this {
     Object.values(this.files).forEach(file => {
-      const metadata = File.read(`${process.cwd()}/meta/${file}`)
-
-      this.metadata[file] = file.includes('.json')
-        ? JSON.parse(metadata)
-        : metadata
+      this.metadata[file] = File.read(join(__dirname, '..', 'meta', file))
     })
 
     return this

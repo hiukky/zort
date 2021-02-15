@@ -1,3 +1,5 @@
+import { IBuilder } from '@zort/core'
+
 export namespace IUlauncher {
   export type Manifest = Record<
     'manifest_version' | 'extend_theme' | 'css_file' | 'css_file_gtk_3.20+',
@@ -15,4 +17,6 @@ export namespace IUlauncher {
   >
 
   export type Files = keyof Schema
+
+  export interface Builder extends IBuilder.Common {}
 }
