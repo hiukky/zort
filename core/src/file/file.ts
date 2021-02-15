@@ -1,10 +1,11 @@
 import fs from 'fs'
+import { join } from 'path'
 import { IFile } from './file.interface'
 
 export class File {
-  static read(path: string): string {
+  static read(...paths: string[]): string {
     try {
-      return fs.readFileSync(path, 'utf8').toString()
+      return fs.readFileSync(join(...paths), 'utf8').toString()
     } catch (error) {
       throw new Error('File not found')
     }

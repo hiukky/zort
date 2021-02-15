@@ -1,5 +1,4 @@
 import { File, Builder, IBuilder } from '@zort/core'
-import { join } from 'path'
 import { ICode, ISchema } from './code.interface'
 
 export class Code extends Builder implements ICode.Builder {
@@ -21,7 +20,7 @@ export class Code extends Builder implements ICode.Builder {
 
   private assemble(): this {
     this.metadata = JSON.parse(
-      File.read(join(__dirname, '..', 'meta', 'schema.json')),
+      File.read(__dirname, '..', 'meta', 'schema.json'),
     )
     this.options = {
       type: 'dark',

@@ -1,5 +1,4 @@
 import { File, Builder, IBuilder } from '@zort/core'
-import { join } from 'path'
 import { IInsomnia } from './insomnia.interface'
 
 export class Insomnia extends Builder implements IInsomnia.Builder {
@@ -18,7 +17,7 @@ export class Insomnia extends Builder implements IInsomnia.Builder {
 
   private assemble(): this {
     this.metadata = JSON.parse(
-      File.read(join(__dirname, '..', 'meta', 'schema.json')),
+      File.read(__dirname, '..', 'meta', 'schema.json'),
     )
     return this
   }

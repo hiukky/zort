@@ -1,5 +1,4 @@
 import { File, Builder, IBuilder } from '@zort/core'
-import { join } from 'path'
 import { IUlauncher } from './ulauncher.interface'
 
 export class Ulauncher extends Builder implements IUlauncher.Builder {
@@ -22,7 +21,7 @@ export class Ulauncher extends Builder implements IUlauncher.Builder {
 
   private assemble(): this {
     Object.values(this.files).forEach(file => {
-      this.metadata[file] = File.read(join(__dirname, '..', 'meta', file))
+      this.metadata[file] = File.read(__dirname, '..', 'meta', file)
     })
 
     return this
