@@ -1,5 +1,5 @@
 {
-  "name": "@eren/code",
+  "name": "@zort/code",
   "main": "dist/index.ts",
   "version": "0.0.0",
   "author": {
@@ -9,12 +9,12 @@
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/hiukky/eren/issues"
+    "url": "https://github.com/hiukky/zort/issues"
   },
-  "homepage": "https://github.com/hiukky/eren#readme",
+  "homepage": "https://github.com/hiukky/zort#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/hiukky/eren"
+    "url": "https://github.com/hiukky/zort"
   },
   "scripts": {
     "test": "jest",
@@ -23,7 +23,7 @@
     "dev": "tsnd --respawn sample/index.ts"
   },
   "devDependencies": {
-    "@eren/core": "0.0.0",
+    "@zort/core": "0.0.0",
     "ts-node-dev": "1.1.1"
   }
 }

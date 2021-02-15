@@ -1,4 +1,4 @@
-import { File, Builder, IBuilder } from '@eren/core'
+import { File, Builder, IBuilder } from '@zort/core'
 import { IInsomnia } from './insomnia.interface'
 
 export class Insomnia extends Builder implements IBuilder.Common {

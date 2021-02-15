@@ -14,12 +14,12 @@
     "url": "https://hiukky.com"
   },
   "bugs": {
-    "url": "https://github.com/hiukky/eren/issues"
+    "url": "https://github.com/hiukky/zort/issues"
   },
-  "homepage": "https://github.com/hiukky/eren#readme",
+  "homepage": "https://github.com/hiukky/zort#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/hiukky/eren"
+    "url": "https://github.com/hiukky/zort"
   },
   "scripts": {
     "test": "yarn jest",

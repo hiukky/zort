@@ -1,4 +1,4 @@
-import { File, Builder, IBuilder } from '@eren/core'
+import { File, Builder, IBuilder } from '@zort/core'
 import { ICode } from './code.interface'
 
 export class Code<T extends string> extends Builder implements IBuilder.Common {

@@ -1,4 +1,4 @@
-import { File, Builder, IBuilder } from '@eren/core'
+import { File, Builder, IBuilder } from '@zort/core'
 import { IUlauncher } from './ulauncher.interface'
 
 export class Ulauncher extends Builder implements IBuilder.Common {

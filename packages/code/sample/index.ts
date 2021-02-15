@@ -1,7 +1,7 @@
 import { resolve } from 'path'
 import { Code } from '../src/code'
 
-new Code<'eren'>({
+new Code<'zort'>({
   dir: {
     dist: `${__dirname}/dist`,
     themes: resolve('../../mock'),
