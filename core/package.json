@@ -2,7 +2,7 @@
   "name": "@zort/core",
   "main": "dist/index.js",
   "description": "Zort core.",
-  "version": "0.1.0-alpha.1",
+  "version": "0.1.0-alpha.2",
   "author": {
     "name": "Romullo",
     "email": "developermarsh@gmail.com",
