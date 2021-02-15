@@ -10,14 +10,14 @@ export class Builder {
     this.variants = SCSS.readAllForJSON(props.dir.themes)
   }
 
-  themeName(variant: string) {
+  protected themeName(variant: string) {
     return variant
       .split('.')
       .map(word => `${word.charAt(0).toUpperCase()}${word.slice(1)}`)
       .join(' ')
   }
 
-  build(themes: IBuilder.Theme): boolean {
+  protected build(themes: IBuilder.Theme): boolean {
     const { dist } = this.props.dir
 
     Object.entries(themes).forEach(([themeName, files]) => {

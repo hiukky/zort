@@ -1,3 +1,5 @@
+import { IBuilder } from 'core'
+
 export namespace ISchema {
   export type Settings = {
     foreground: string
@@ -24,5 +26,9 @@ export namespace ICode {
       scope: string[]
       settings: ISchema.Settings[]
     }
+  }
+
+  export interface Builder extends IBuilder.Common {
+    set(options: Props): this
   }
 }

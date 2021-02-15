@@ -4,6 +4,7 @@ import { sync } from 'rimraf'
 export const mockDir = (dir = __dirname) => ({
   themes: join(__dirname, 'themes'),
   temp: join(__dirname, 'temp'),
+  meta: join(dir, 'meta'),
   dist: join(dir, 'dist'),
 })
 

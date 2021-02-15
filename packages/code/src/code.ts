@@ -1,7 +1,8 @@
 import { File, Builder, IBuilder } from '@zort/core'
+import { join } from 'path'
 import { ICode, ISchema } from './code.interface'
 
-export class Code extends Builder implements IBuilder.Common {
+export class Code extends Builder implements ICode.Builder {
   private options: ICode.Props
 
   private metadata: ICode.Schema
@@ -19,7 +20,9 @@ export class Code extends Builder implements IBuilder.Common {
   }
 
   private assemble(): this {
-    this.metadata = JSON.parse(File.read(`${process.cwd()}/meta/schema.json`))
+    this.metadata = JSON.parse(
+      File.read(join(__dirname, '..', 'meta', 'schema.json')),
+    )
     this.options = {
       type: 'dark',
       fontStyle: ['none'],
@@ -30,7 +33,7 @@ export class Code extends Builder implements IBuilder.Common {
 
   private manifestFor(
     variant: string,
-    type: ISchema.IType = 'dark',
+    type: ISchema.IType,
   ): Record<'name' | 'variant' | 'type', string> {
     return { name: this.themeName(variant), variant, type }
   }
