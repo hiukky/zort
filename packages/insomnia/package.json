@@ -1,7 +1,8 @@
 {
   "name": "@zort/insomnia",
-  "main": "dist/index.ts",
-  "version": "0.0.0",
+  "main": "dist/index.js",
+  "description": "Theme builder for Insomnia.",
+  "version": "0.1.0-alpha.1",
   "author": {
     "name": "Romullo",
     "email": "developermarsh@gmail.com",
@@ -26,7 +27,7 @@
     "test:cov": "jest --coverage"
   },
   "devDependencies": {
-    "@zort/core": "0.0.0",
+    "@zort/core": "0.1.0-alpha.1",
     "esbuild": "0.8.46",
     "rimraf": "3.0.2",
     "ts-node-dev": "1.1.1",

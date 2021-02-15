@@ -1,23 +1,23 @@
 import { File, SCSS, IBuilder, ISCSS } from '..'
 
 export class Builder {
-  private props: IBuilder.Props
+  protected props: IBuilder.Props
 
-  protected variants: ISCSS.Schema
+  public variants: ISCSS.Schema
 
   constructor(props: IBuilder.Props) {
     this.props = props
     this.variants = SCSS.readAllForJSON(props.dir.themes)
   }
 
-  protected themeName(variant: string) {
+  public themeName(variant: string) {
     return variant
       .split('.')
       .map(word => `${word.charAt(0).toUpperCase()}${word.slice(1)}`)
       .join(' ')
   }
 
-  protected build(themes: IBuilder.Theme): boolean {
+  public build(themes: IBuilder.Theme): boolean {
     const { dist } = this.props.dir
 
     Object.entries(themes).forEach(([themeName, files]) => {

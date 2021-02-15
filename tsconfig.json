@@ -3,7 +3,6 @@
     "lib": ["ESNext"],
     "target": "ESNext",
     "module": "CommonJS",
-    "outDir": "./dist",
     "declaration": true,
     "emitDeclarationOnly": true,
     "moduleResolution": "node",
@@ -16,6 +15,6 @@
       "@mock/*": ["mock/*"]
     }
   },
-  "include": ["packages/**/*", "core/**/*"],
+  "include": ["packages/**/*", "core", "mock"],
   "exclude": ["node_modules", "dist"]
 }

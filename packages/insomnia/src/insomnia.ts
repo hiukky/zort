@@ -1,13 +1,15 @@
 import { File, Builder, IBuilder } from '@zort/core'
 import { IInsomnia } from './insomnia.interface'
 
-export class Insomnia extends Builder implements IInsomnia.Builder {
+export class Insomnia implements IInsomnia.Builder {
   private metadata: IInsomnia.Schema
 
   private themes: IBuilder.Theme
 
+  private builder: Builder
+
   constructor(props: IBuilder.Props) {
-    super(props)
+    this.builder = new Builder(props)
 
     this.themes = {} as IBuilder.Theme
     this.metadata = {} as IInsomnia.Schema
@@ -25,11 +27,15 @@ export class Insomnia extends Builder implements IInsomnia.Builder {
   private manifestFor(
     variant: string,
   ): Record<'displayName' | 'variant' | 'name', string> {
-    return { displayName: this.themeName(variant), name: variant, variant }
+    return {
+      displayName: this.builder.themeName(variant),
+      name: variant,
+      variant,
+    }
   }
 
   private stage(): this {
-    Object.keys(this.variants).forEach(variant => {
+    Object.keys(this.builder.variants).forEach(variant => {
       this.themes[variant] = {
         [`${variant}.json`]: JSON.stringify({
           ...this.manifestFor(variant),
@@ -42,6 +48,7 @@ export class Insomnia extends Builder implements IInsomnia.Builder {
   }
 
   compile(): boolean {
-    return this.stage().build(this.themes)
+    this.stage()
+    return this.builder.build(this.themes)
   }
 }

@@ -1,13 +1,15 @@
 import { File, Builder, IBuilder } from '@zort/core'
 import { IUlauncher } from './ulauncher.interface'
 
-export class Ulauncher extends Builder implements IUlauncher.Builder {
+export class Ulauncher implements IUlauncher.Builder {
   private metadata: IUlauncher.Schema
 
   private themes: IBuilder.Theme
 
+  private builder: Builder
+
   constructor(props: IBuilder.Props) {
-    super(props)
+    this.builder = new Builder(props)
 
     this.metadata = {} as IUlauncher.Schema
     this.themes = {} as IBuilder.Theme
@@ -28,7 +30,7 @@ export class Ulauncher extends Builder implements IUlauncher.Builder {
   }
 
   private stage(): this {
-    Object.keys(this.variants).forEach(variant => {
+    Object.keys(this.builder.variants).forEach(variant => {
       this.themes[variant] = this.metadata
     })
 
@@ -36,6 +38,7 @@ export class Ulauncher extends Builder implements IUlauncher.Builder {
   }
 
   compile(): boolean {
-    return this.stage().build(this.themes)
+    this.stage()
+    return this.builder.build(this.themes)
   }
 }

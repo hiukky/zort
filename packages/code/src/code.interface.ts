@@ -1,4 +1,4 @@
-import { IBuilder } from 'core'
+import { IBuilder } from '@zort/core'
 
 export namespace ISchema {
   export type Settings = {

@@ -1,10 +1,13 @@
 {
-  "version": "0.0.0",
+  "version": "0.1.0-alpha.1",
   "npmClient": "yarn",
   "useWorkspaces": true,
-  "packages": ["packages/*", "core", "mock"],
+  "packages": ["packages/**/*", "core"],
   "exact": true,
   "command": {
+    "version": {
+      "message": "chore(release): %s"
+    },
     "publish": {
       "conventionalCommits": true
     }

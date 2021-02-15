@@ -1,15 +1,17 @@
 import { File, Builder, IBuilder } from '@zort/core'
-import { ICode, ISchema } from './code.interface'
+import { ICode } from './code.interface'
 
-export class Code extends Builder implements ICode.Builder {
+export class Code implements ICode.Builder {
   private options: ICode.Props
 
   private metadata: ICode.Schema
 
   private themes: IBuilder.Theme
 
+  private builder: Builder
+
   constructor(props: IBuilder.Props) {
-    super(props)
+    this.builder = new Builder(props)
 
     this.themes = {} as IBuilder.Theme
     this.metadata = {} as ICode.Schema
@@ -32,15 +34,16 @@ export class Code extends Builder implements ICode.Builder {
 
   private manifestFor(
     variant: string,
-    type: ISchema.IType,
   ): Record<'name' | 'variant' | 'type', string> {
-    return { name: this.themeName(variant), variant, type }
+    const { type } = this.options
+
+    return { name: this.builder.themeName(variant), variant, type }
   }
 
   private stage(): this {
-    const { type, fontStyle } = this.options
+    const { fontStyle } = this.options
 
-    Object.keys(this.variants).forEach(variant => {
+    Object.keys(this.builder.variants).forEach(variant => {
       fontStyle.forEach(fontType => {
         const themeName =
           fontType === 'none'
@@ -50,7 +53,7 @@ export class Code extends Builder implements ICode.Builder {
         this.themes[variant] = {
           ...this.themes[variant],
           [themeName]: JSON.stringify({
-            ...this.manifestFor(variant, type),
+            ...this.manifestFor(variant),
             ...this.metadata,
           }).replaceAll('$fontStyle', fontType),
         }
@@ -66,7 +69,7 @@ export class Code extends Builder implements ICode.Builder {
   }
 
   compile(): boolean {
-    this.stage().build(this.themes)
-    return true
+    this.stage()
+    return this.builder.build(this.themes)
   }
 }

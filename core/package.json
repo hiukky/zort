@@ -1,7 +1,8 @@
 {
   "name": "@zort/core",
-  "main": "index.ts",
-  "version": "0.0.0",
+  "main": "dist/index.js",
+  "description": "Zort core.",
+  "version": "0.1.0-alpha.1",
   "author": {
     "name": "Romullo",
     "email": "developermarsh@gmail.com",
@@ -17,8 +18,14 @@
     "url": "https://github.com/hiukky/zort"
   },
   "scripts": {
+    "prebuild": "rimraf dist",
+    "build": "esbuild index.ts --outfile=dist/index.js --bundle --platform=node --minify",
+    "postbuild": "tsc -p tsconfig.build.json",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage"
+  },
+  "devDependencies": {
+    "esbuild": "0.8.46"
   }
 }
