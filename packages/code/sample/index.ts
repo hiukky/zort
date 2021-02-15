@@ -1,9 +1,6 @@
-import { resolve } from 'path'
+import { mockDir } from '@mock/setup'
 import { Code } from '../src/code'
 
-new Code({
-  dir: {
-    dist: `${__dirname}/dist`,
-    themes: resolve('../../mock'),
-  },
-}).compile()
+const { dist, themes } = mockDir(__dirname)
+
+new Code({ dir: { dist, themes } }).compile()

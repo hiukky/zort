@@ -1,5 +1,5 @@
 {
-  "name": "@zort/code",
+  "name": "@zort/insomnia",
   "main": "dist/index.ts",
   "version": "0.0.0",
   "author": {
@@ -29,6 +29,7 @@
     "@zort/core": "0.0.0",
     "esbuild": "0.8.46",
     "rimraf": "3.0.2",
-    "ts-node-dev": "1.1.1"
+    "ts-node-dev": "1.1.1",
+    "tsconfig-paths": "3.9.0"
   }
 }

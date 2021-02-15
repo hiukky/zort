@@ -1441,9 +1441,9 @@
     universal-user-agent "^6.0.0"
 
 "@octokit/openapi-types@^4.0.3":
-  version "4.0.3"
-  resolved "https://registry.yarnpkg.com/@octokit/openapi-types/-/openapi-types-4.0.3.tgz#857335b0ddb3400fd19f8917b2affb5ee897dd3f"
-  integrity sha512-CXCe1Zzc/WhjpuAEgoUktAinZJ02l6W8q1hDkwBtaonEtO6cjo/3Pyb2J1t5y2q/SvjESDJ77xZ9UVHqQVvihw==
+  version "4.0.4"
+  resolved "https://registry.yarnpkg.com/@octokit/openapi-types/-/openapi-types-4.0.4.tgz#96fcce11e929802898646205ac567e5df592f82b"
+  integrity sha512-31zY8JIuz3h6RAFOnyA8FbOwhILILiBu1qD81RyZZWY7oMBhIdBn6MaAmnnptLhB4jk0g50nkQkUVP4kUzppcA==
 
 "@octokit/plugin-enterprise-rest@^6.0.1":
   version "6.0.1"
@@ -1532,12 +1532,11 @@
     "@types/node" ">= 8"
 
 "@octokit/types@^6.0.3", "@octokit/types@^6.7.1":
-  version "6.8.4"
-  resolved "https://registry.yarnpkg.com/@octokit/types/-/types-6.8.4.tgz#8a212f601792f26791c9ef0e3b7b8d3976e45e62"
-  integrity sha512-iKAMx//mBk74NwXdeKg8kdYO5zb1n6Ypk5uxwM96U35rJQv4Y8lMQxfzhN8QyzQHaZkxQsl28bn+MPEhiqXb7w==
+  version "6.8.5"
+  resolved "https://registry.yarnpkg.com/@octokit/types/-/types-6.8.5.tgz#797dfdad8c75718e97dc687d4c9fc49200ca8d17"
+  integrity sha512-ZsQawftZoi0kSF2pCsdgLURbOjtVcHnBOXiSxBKSNF56CRjARt5rb/g8WJgqB8vv4lgUEHrv06EdDKYQ22vA9Q==
   dependencies:
     "@octokit/openapi-types" "^4.0.3"
-    "@types/node" ">= 8"
 
 "@sinonjs/commons@^1.7.0":
   version "1.8.2"
@@ -1586,7 +1585,7 @@
   dependencies:
     "@babel/types" "^7.3.0"
 
-"@types/glob@^7.1.1":
+"@types/glob@*", "@types/glob@^7.1.1":
   version "7.1.3"
   resolved "https://registry.yarnpkg.com/@types/glob/-/glob-7.1.3.tgz#e6ba80f36b7daad2c685acd9266382e68985c183"
   integrity sha512-SEYeGAIQIQX8NN6LDKprLjbrd5dARM5EXsd8GI/A5l0apYI1fGMWgPHSe4ZKL4eozlAyI+doUE9XbYS4xCkQ1w==
@@ -1649,9 +1648,9 @@
   integrity sha512-fZQQafSREFyuZcdWFAExYjBiCL7AUCdgsk80iO0q4yihYYdcIiH28CcuPTGFgLOCC8RlW49GSQxdHwZP+I7CNg==
 
 "@types/node@*", "@types/node@>= 8", "@types/node@^14.14.25":
-  version "14.14.27"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.14.27.tgz#c7127f8da0498993e13b1a42faf1303d3110d2f2"
-  integrity sha512-Ecfmo4YDQPwuqTCl1yBxLV5ihKfRlkBmzUEDcfIRvDxOTGQEeikr317Ln7Gcv0tjA8dVgKI3rniqW2G1OyKDng==
+  version "14.14.28"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.14.28.tgz#cade4b64f8438f588951a6b35843ce536853f25b"
+  integrity sha512-lg55ArB+ZiHHbBBttLpzD07akz0QPrZgUODNakeC09i62dnrywr9mFErHuaPlB6I7z+sEbK+IYmplahvplCj2g==
 
 "@types/normalize-package-data@^2.4.0":
   version "2.4.0"
@@ -1667,6 +1666,14 @@
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@types/prettier/-/prettier-2.2.1.tgz#374e31645d58cb18a07b3ecd8e9dede4deb2cccd"
   integrity sha512-DxZZbyMAM9GWEzXL+BMZROWz9oo6A9EilwwOMET2UVu2uZTqMWS5S69KVtuVKaRjCUpcrOXRalet86/OpG4kqw==
+
+"@types/rimraf@^3.0.0":
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/@types/rimraf/-/rimraf-3.0.0.tgz#b9d03f090ece263671898d57bb7bb007023ac19f"
+  integrity sha512-7WhJ0MdpFgYQPXlF4Dx+DhgvlPCfz/x5mHaeDQAKhcenvQP1KCpLQ18JklAqeGMYSAT2PxLpzd0g2/HE7fj7hQ==
+  dependencies:
+    "@types/glob" "*"
+    "@types/node" "*"
 
 "@types/stack-utils@^2.0.0":
   version "2.0.0"
@@ -3998,9 +4005,9 @@ growly@^1.3.0:
   integrity sha1-8QdIy+dq+WS3yWyTxrzCivEgwIE=
 
 handlebars@^4.7.6:
-  version "4.7.6"
-  resolved "https://registry.yarnpkg.com/handlebars/-/handlebars-4.7.6.tgz#d4c05c1baf90e9945f77aa68a7a219aa4a7df74e"
-  integrity sha512-1f2BACcBfiwAfStCKZNrUCgqNZkGsAT7UM3kkYtXuLo0KnaVfjKOyf7PRzB6++aK9STyT1Pd2ZCPe3EGOXleXA==
+  version "4.7.7"
+  resolved "https://registry.yarnpkg.com/handlebars/-/handlebars-4.7.7.tgz#9ce33416aad02dbd6c8fafa8240d5d98004945a1"
+  integrity sha512-aAcXm5OAfE/8IXkcZvCepKU3VzW1/39Fb5ZuqMtgI/hT8X2YgoMvBY5dLhq/cpOvw7Lk1nK/UF71aLG/ZnVYRA==
   dependencies:
     minimist "^1.2.5"
     neo-async "^2.6.0"
@@ -7796,7 +7803,7 @@ ts-node@^9.0.0:
     source-map-support "^0.5.17"
     yn "3.1.1"
 
-tsconfig-paths@^3.9.0:
+tsconfig-paths@3.9.0, tsconfig-paths@^3.9.0:
   version "3.9.0"
   resolved "https://registry.yarnpkg.com/tsconfig-paths/-/tsconfig-paths-3.9.0.tgz#098547a6c4448807e8fcb8eae081064ee9a3c90b"
   integrity sha512-dRcuzokWhajtZWkQsDVKbWyY+jgcLC5sqJhg2PSgf4ZkH2aHPvaOY8YWGhmjb68b5qqTfasSsDO9k7RUiEmZAw==

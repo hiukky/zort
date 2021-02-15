@@ -1,16 +1,6 @@
 import { File, ISCSS } from '..'
 
 export class SCSS {
-  static check(fileName: string): boolean {
-    if (!/.\.scss$/.test(fileName)) {
-      throw new Error(
-        'The informed directory does not contain valid SCSS files.',
-      )
-    }
-
-    return true
-  }
-
   static toJSON(file: string): ISCSS.JSON {
     let data = {}
 
@@ -51,6 +41,10 @@ export class SCSS {
   static merge<S, T extends ISCSS.JSON>(source: S, target: T): S {
     let output = source
 
+    if (!target) {
+      throw new Error('Color scheme not defined for the specified theme.')
+    }
+
     Object.keys(target).forEach(colorName => {
       output = JSON.parse(
         JSON.stringify(output).replaceAll(colorName, target[colorName]),
@@ -64,7 +58,11 @@ export class SCSS {
     return File.list(path)
       .filter(fileName => !fileName.startsWith('_'))
       .map(fileName => {
-        this.check(fileName)
+        if (!/.\.scss$/.test(fileName)) {
+          throw new Error(
+            'The informed directory does not contain valid SCSS files.',
+          )
+        }
 
         return {
           [fileName.replace('.scss', '')]: this.read(path, fileName),

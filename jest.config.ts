@@ -1,10 +1,14 @@
 module.exports = {
+  rootDir: '.',
   testEnvironment: 'node',
   collectCoverage: true,
   coverageReporters: ['json', 'lcov'],
   collectCoverageFrom: ['**/src/**'],
-  testMatch: ['**/__tests__/**/*.+(ts|js)', '**/?(*.)+(spec|test).+(ts|js)'],
+  testMatch: ['**/?(*.)+(spec).+(ts)'],
   transform: {
     '^.+\\.(ts)$': 'ts-jest',
+  },
+  moduleNameMapper: {
+    '^@mock(.*)$': '<rootDir>/mock$1',
   },
 }

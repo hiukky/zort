@@ -11,8 +11,11 @@
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "paths": {
+      "@mock/*": ["mock/*"]
+    }
   },
-  "include": ["packages/**/*"],
+  "include": ["packages/**/*", "core/**/*"],
   "exclude": ["node_modules", "dist"]
 }
