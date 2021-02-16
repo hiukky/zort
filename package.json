@@ -26,7 +26,6 @@
     "postinstall": "husky install",
     "test": "yarn jest",
     "test:cov": "yarn jest --coverage",
-    "posttest": "rimraf dist",
     "format": "prettier --write \"**/*.ts\"",
     "lint": "yarn eslint \"**/*.ts\" --fix",
     "build": "lerna run build --stream"
