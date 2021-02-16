@@ -29,11 +29,13 @@
     "test:cov": "jest --coverage"
   },
   "devDependencies": {
-    "@zort/core": "0.1.0-alpha.3",
     "esbuild": "0.8.46",
     "rimraf": "3.0.2",
     "ts-node-dev": "1.1.1",
     "tsconfig-paths": "3.9.0"
+  },
+  "dependencies": {
+    "@zort/core": "0.1.0-alpha.3"
   },
   "files": [
     "dist"
