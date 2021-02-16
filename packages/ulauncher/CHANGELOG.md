@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-alpha.6](https://github.com/hiukky/zort/compare/v0.1.0-alpha.5...v0.1.0-alpha.6) (2021-02-16)
+
+
+### Bug Fixes
+
+* use tsconfig-paths ([a2b96ed](https://github.com/hiukky/zort/commit/a2b96edf581e547993bcf796bd5e4e4716e6c5f3))
+
+
+
+
+
 # [0.1.0-alpha.5](https://github.com/hiukky/zort/compare/v0.1.0-alpha.4...v0.1.0-alpha.5) (2021-02-16)
 
 

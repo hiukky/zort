@@ -4,7 +4,7 @@
   "module": "dist/index.js",
   "typings": "dist/index.d.ts",
   "description": "Zort core.",
-  "version": "0.1.0-alpha.3",
+  "version": "0.1.0-alpha.6",
   "author": {
     "name": "Romullo",
     "email": "developermarsh@gmail.com",

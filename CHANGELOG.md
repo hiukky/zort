@@ -3,6 +3,24 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-alpha.6](https://github.com/hiukky/zort/compare/v0.1.0-alpha.5...v0.1.0-alpha.6) (2021-02-16)
+
+
+### Bug Fixes
+
+* use tsconfig-paths ([a2b96ed](https://github.com/hiukky/zort/commit/a2b96edf581e547993bcf796bd5e4e4716e6c5f3))
+
+
+### Features
+
+* **github:** added build action ([6a0a834](https://github.com/hiukky/zort/commit/6a0a8343fd5d00e7d7836447c63237a9aab10b42))
+* **husky:** added new hooks ([68670d3](https://github.com/hiukky/zort/commit/68670d359418c7ffdafd9724152e432d6f4c059a))
+* **insomnia:** generate main file ([8c53f84](https://github.com/hiukky/zort/commit/8c53f84b1498388a307629259b834e198340f111))
+
+
+
+
+
 # [0.1.0-alpha.5](https://github.com/hiukky/zort/compare/v0.1.0-alpha.4...v0.1.0-alpha.5) (2021-02-16)
 
 
