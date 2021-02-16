@@ -4,7 +4,7 @@
   "module": "dist/index.js",
   "typings": "dist/code.d.ts",
   "description": "Theme builder for VS Code.",
-  "version": "0.1.0-alpha.4",
+  "version": "0.1.0-alpha.5",
   "author": {
     "name": "Romullo",
     "email": "developermarsh@gmail.com",
