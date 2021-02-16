@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-alpha.4](https://github.com/hiukky/zort/compare/v0.1.0-alpha.3...v0.1.0-alpha.4) (2021-02-16)
+
+
+### Bug Fixes
+
+* **packages:** dependencies ([784d632](https://github.com/hiukky/zort/commit/784d632edac5ed2698cfefee438cdef491c94d42))
+
+
+
+
+
 # [0.1.0-alpha.3](https://github.com/hiukky/zort/compare/v0.1.0-alpha.2...v0.1.0-alpha.3) (2021-02-16)
 
 

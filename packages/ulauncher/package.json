@@ -4,7 +4,7 @@
   "module": "dist/index.js",
   "typings": "dist/ulauncher.d.ts",
   "description": "Theme builder for Ulauncher.",
-  "version": "0.1.0-alpha.3",
+  "version": "0.1.0-alpha.4",
   "author": {
     "name": "Romullo",
     "email": "developermarsh@gmail.com",

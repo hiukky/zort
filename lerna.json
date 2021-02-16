@@ -1,13 +1,19 @@
 {
-  "version": "0.1.0-alpha.3",
+  "version": "0.1.0-alpha.4",
   "npmClient": "yarn",
   "useWorkspaces": true,
-  "packages": ["packages/**/*", "core"],
+  "packages": [
+    "packages/**/*",
+    "core"
+  ],
   "exact": true,
   "command": {
     "version": {
       "message": "chore(release): %s",
-      "allowBranch": ["main", "develop"]
+      "allowBranch": [
+        "main",
+        "develop"
+      ]
     },
     "publish": {
       "conventionalCommits": true
