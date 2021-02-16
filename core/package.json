@@ -1,6 +1,8 @@
 {
   "name": "@zort/core",
   "main": "dist/index.js",
+  "module": "dist/index.js",
+  "typings": "dist/index.d.ts",
   "description": "Zort core.",
   "version": "0.1.0-alpha.2",
   "author": {
@@ -27,5 +29,8 @@
   },
   "devDependencies": {
     "esbuild": "0.8.46"
-  }
+  },
+  "files": [
+    "dist"
+  ]
 }

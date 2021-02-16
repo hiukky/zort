@@ -1,6 +1,8 @@
 {
   "name": "@zort/insomnia",
   "main": "dist/index.js",
+  "module": "dist/index.js",
+  "typings": "dist/insomnia.d.ts",
   "description": "Theme builder for Insomnia.",
   "version": "0.1.0-alpha.2",
   "author": {
@@ -32,5 +34,8 @@
     "rimraf": "3.0.2",
     "ts-node-dev": "1.1.1",
     "tsconfig-paths": "3.9.0"
-  }
+  },
+  "files": [
+    "dist"
+  ]
 }
