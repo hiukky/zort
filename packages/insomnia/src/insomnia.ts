@@ -21,6 +21,7 @@ export class Insomnia implements IInsomnia.Builder {
     this.metadata = JSON.parse(
       File.read(__dirname, '..', 'meta', 'schema.json'),
     )
+
     return this
   }
 
@@ -32,6 +33,27 @@ export class Insomnia implements IInsomnia.Builder {
       name: variant,
       variant,
     }
+  }
+
+  private generateMainFile(): boolean {
+    const payload: string[] = []
+
+    Object.entries(this.themes).forEach(([, files]) => {
+      Object.keys(files).forEach(fileName => {
+        payload.push(`require('./${fileName}')`)
+      })
+    })
+
+    File.create({
+      fileName: 'index.js',
+      path: this.builder.props.dir.dist,
+      matadata: `module.exports.themes = ${JSON.stringify(payload).replaceAll(
+        '"',
+        '',
+      )}`,
+    })
+
+    return true
   }
 
   private stage(): this {
@@ -49,6 +71,9 @@ export class Insomnia implements IInsomnia.Builder {
 
   compile(): boolean {
     this.stage()
-    return this.builder.build(this.themes)
+
+    this.builder.build(this.themes)
+
+    return this.generateMainFile()
   }
 }

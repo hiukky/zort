@@ -1,7 +1,7 @@
 import { File, SCSS, IBuilder, ISCSS } from '..'
 
 export class Builder {
-  protected props: IBuilder.Props
+  public props: IBuilder.Props
 
   public variants: ISCSS.Schema
 
