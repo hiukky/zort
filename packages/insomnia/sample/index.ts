@@ -1,9 +1,6 @@
-import { resolve } from 'path'
-import { Insomnia } from '..'
+import { mockDir } from '@mock/setup'
+import { Insomnia } from '../src/insomnia'
 
-new Insomnia({
-  dir: {
-    dist: `${__dirname}/dist`,
-    themes: resolve('../../mock'),
-  },
-}).compile()
+const { dist, themes } = mockDir(__dirname)
+
+new Insomnia({ dir: { dist, themes } }).compile()

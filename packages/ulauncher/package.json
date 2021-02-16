@@ -20,7 +20,7 @@
     "url": "https://github.com/hiukky/zort"
   },
   "scripts": {
-    "dev": "tsnd --respawn sample/index.ts",
+    "dev": "tsnd --respawn -r tsconfig-paths/register sample/index.ts",
     "prebuild": "rimraf dist",
     "build": "esbuild index.ts --outfile=dist/index.js --bundle --platform=node --minify",
     "postbuild": "tsc -p tsconfig.build.json",

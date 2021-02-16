@@ -1,5 +1,5 @@
 import { resolve } from 'path'
-import { Ulauncher } from '..'
+import { Ulauncher } from '../src/ulauncher'
 
 new Ulauncher({
   dir: {
