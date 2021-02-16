@@ -38,6 +38,7 @@
     "@zort/core": "0.1.0-alpha.3"
   },
   "files": [
-    "dist"
+    "dist",
+    "meta"
   ]
 }
