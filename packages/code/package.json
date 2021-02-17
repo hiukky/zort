@@ -22,7 +22,7 @@
   "scripts": {
     "dev": "tsnd --respawn -r tsconfig-paths/register sample/index.ts",
     "prebuild": "rimraf dist",
-    "build": "esbuild index.ts --outfile=dist/index.js --bundle --platform=node --minify",
+    "build": "esbuild --external:vsce index.ts --outfile=dist/index.js --bundle --platform=node --minify",
     "postbuild": "tsc -p tsconfig.build.json",
     "test": "jest",
     "test:watch": "jest --watch",
@@ -41,5 +41,8 @@
   "files": [
     "dist",
     "meta"
-  ]
+  ],
+  "peerDependencies": {
+    "vsce": "1.85.0"
+  }
 }

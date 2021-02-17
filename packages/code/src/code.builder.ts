@@ -25,7 +25,7 @@ export class CodeBuilder extends Builder {
   }
 
   public async createExtension(): Promise<void> {
-    await createVSIX({ cwd: this.props.paths.root })
+    await createVSIX({ cwd: this.props.paths.root, useYarn: true })
   }
 
   public updatePkgJSON(type: ISchema.IType): this {

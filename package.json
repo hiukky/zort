@@ -1,7 +1,7 @@
 {
   "name": "root",
   "private": true,
-  "version": "0.1.0-alpha.1",
+  "version": "0.0.0",
   "workspaces": {
     "packages": [
       "packages/*",
@@ -23,13 +23,13 @@
     "url": "https://github.com/hiukky/zort"
   },
   "scripts": {
-    "clean": "rimraf dist",
     "postinstall": "husky install",
     "test": "yarn jest",
     "test:cov": "yarn jest --coverage",
     "format": "prettier --write \"**/*.ts\"",
     "lint": "yarn eslint \"**/*.ts\" --fix",
-    "build": "lerna run build --stream"
+    "prebuild": "rimraf dist",
+    "build": "lerna run build"
   },
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",
