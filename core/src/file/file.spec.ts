@@ -20,7 +20,9 @@ describe('File', () => {
 
   describe('List', () => {
     it('should list all the files in a directory', () => {
-      expect(File.list(temp)).toEqual(['.gitkeep', 'zort.json'])
+      expect(File.list(temp)).toEqual(
+        expect.arrayContaining(['.gitkeep', 'zort.json']),
+      )
     })
 
     it('should return a directory not found error', () => {

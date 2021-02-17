@@ -1,3 +1,4 @@
+import glob from 'glob'
 import { File, SCSS, IBuilder, ISCSS } from '..'
 
 export class Builder {
@@ -15,6 +16,14 @@ export class Builder {
       .split('.')
       .map(word => `${word.charAt(0).toUpperCase()}${word.slice(1)}`)
       .join(' ')
+  }
+
+  public listThemesBuilt(): string[] {
+    const { dist } = this.props.paths
+
+    return glob
+      .sync(`${dist}/**/*.json`)
+      .map(path => `./${path?.replace(dist.replace(/[^/]+$/g, ''), '')}`)
   }
 
   public build(themes: IBuilder.Theme): this {

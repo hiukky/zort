@@ -2,7 +2,7 @@ import { mockClean, mockSchemaJSON, mockDir } from '@mock/setup'
 import { Builder } from './builder'
 
 describe('Builder', () => {
-  const { dist, themes, root } = mockDir()
+  const { dist, themes, root, temp } = mockDir()
 
   const builder = new Builder({ paths: { root, dist, themes } })
 
@@ -14,6 +14,14 @@ describe('Builder', () => {
     it('should generate the actual display name for the theme in camel case', () => {
       expect(builder.themeName('zort')).toBe('Zort')
       expect(builder.themeName('zort.aye')).toBe('Zort Aye')
+    })
+  })
+
+  describe('ListThemesBuilt', () => {
+    it('should list all compiled themes in a directory', () => {
+      expect(
+        new Builder({ paths: { root, dist: temp, themes } }).listThemesBuilt(),
+      ).toEqual(['./temp/zort.json'])
     })
   })
 
