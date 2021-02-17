@@ -62,3 +62,21 @@ export const mockSCSSSchemaJSON = () => ({
   $white: '#ffffff',
   $yellow: '#ffe066',
 })
+
+export const mockPkgJSON = () => ({
+  name: 'mock',
+  author: {
+    name: 'Romullo',
+    email: 'developermarsh@gmail.com',
+    url: 'https://hiukky.com',
+  },
+  license: 'MIT',
+  bugs: {
+    url: 'https://github.com/hiukky/zort/issues',
+  },
+  homepage: 'https://github.com/hiukky/zort#readme',
+  repository: {
+    type: 'git',
+    url: 'https://github.com/hiukky/zort',
+  },
+})

@@ -13,39 +13,5 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/hiukky/zort"
-  },
-  "contributes": {
-    "themes": [
-      {
-        "label": "Zort Aye Italic",
-        "uiTheme": "vs-light",
-        "path": "./dist/zort-aye/zort.aye.italic.json"
-      },
-      {
-        "label": "Zort Aye",
-        "uiTheme": "vs-light",
-        "path": "./dist/zort-aye/zort.aye.json"
-      },
-      {
-        "label": "Zort Aye",
-        "uiTheme": "vs-light",
-        "path": "./dist/zort.aye.json"
-      },
-      {
-        "label": "Zort",
-        "uiTheme": "vs-light",
-        "path": "./dist/zort.json"
-      },
-      {
-        "label": "Zort Italic",
-        "uiTheme": "vs-light",
-        "path": "./dist/zort/zort.italic.json"
-      },
-      {
-        "label": "Zort",
-        "uiTheme": "vs-light",
-        "path": "./dist/zort/zort.json"
-      }
-    ]
   }
 }
