@@ -1,14 +1,13 @@
 import { IBuilder } from '@zort/core'
 
 export namespace ISchema {
+  export type IType = 'dark' | 'light'
+  export type UITheme = 'vs' | 'vs-dark' | 'hc-black'
+  export type FontStyle = 'none' | 'bold' | 'italic'
   export type Settings = {
     foreground: string
     fontStyle: 'none' | 'bold' | 'italic'
   }
-
-  export type IType = 'dark' | 'light'
-
-  export type FontStyle = 'none' | 'bold' | 'italic'
 }
 
 export namespace ICode {
@@ -16,8 +15,6 @@ export namespace ICode {
     type: ISchema.IType
     fontStyle: ISchema.FontStyle[]
   }
-
-  export type Props = Options
 
   export type Schema = {
     colors: Record<string, string>
@@ -28,6 +25,9 @@ export namespace ICode {
     }
   }
 
+  export type ContributeSchema = Record<'label' | 'uiTheme' | 'path', string>
+  export type Manifest = Record<'name' | 'variant' | 'type', string>
+  export type Props = Options
   export interface Builder extends IBuilder.Common {
     set(options: Props): this
   }

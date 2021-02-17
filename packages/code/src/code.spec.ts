@@ -1,4 +1,5 @@
-import { mockClean, mockDir } from '@mock/setup'
+import { mockClean, mockDir, mockPkgJSON } from '@mock/setup'
+import { File } from '@zort/core'
 import { Code } from './code'
 
 describe('Code', () => {
@@ -6,8 +7,14 @@ describe('Code', () => {
 
   const code = new Code({ paths: { root, dist, themes } })
 
-  afterAll(() => {
+  afterEach(() => {
     mockClean()
+
+    File.create({
+      fileName: 'package.json',
+      path: root,
+      matadata: JSON.stringify(mockPkgJSON(), null, 2),
+    })
   })
 
   describe('Build', () => {
