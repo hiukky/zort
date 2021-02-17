@@ -1,8 +1,11 @@
 import { File, Builder, IBuilder } from '@zort/core'
+import glob from 'glob'
 import { ICode } from './code.interface'
 
 export class Code implements ICode.Builder {
   private options: ICode.Props
+
+  private package: string
 
   private metadata: ICode.Schema
 
@@ -16,14 +19,20 @@ export class Code implements ICode.Builder {
     this.themes = {} as IBuilder.Theme
     this.metadata = {} as ICode.Schema
     this.options = {} as ICode.Options
+    this.package = ''
 
     this.assemble()
   }
 
   private assemble(): this {
+    const { root } = this.builder.props.paths
+
     this.metadata = JSON.parse(
       File.read(__dirname, '..', 'meta', 'schema.json'),
     )
+
+    this.package = JSON.parse(File.read(root, 'package.json'))
+
     this.options = {
       type: 'dark',
       fontStyle: ['none'],
@@ -63,13 +72,46 @@ export class Code implements ICode.Builder {
     return this
   }
 
-  set(options: ICode.Props): this {
+  private updatePackageJSON(): boolean {
+    const { dist, root } = this.builder.props.paths
+
+    const getUiTheme = () => `vs-${this.options.type}`
+
+    const getPath = (path?: string): string =>
+      `./${path?.replace(dist.replace(/[^/]+$/g, ''), '')}`
+
+    const getLabel = (path: string): string =>
+      this.builder.themeName(path.replace('.json', '').match(/[^/]+$/g)![0])
+
+    const themesMetadata = glob.sync(`${dist}/**/*.json`).map(dir => ({
+      label: getLabel(dir),
+      uiTheme: getUiTheme(),
+      path: getPath(dir),
+    }))
+
+    this.package = Object.assign(this.package, {
+      contributes: { themes: themesMetadata },
+    })
+
+    File.create({
+      fileName: 'package.json',
+      path: root,
+      matadata: JSON.stringify(this.package, null, 2),
+    })
+
+    return true
+  }
+
+  public set(options: ICode.Props): this {
     this.options = { ...this.options, ...options }
     return this
   }
 
-  compile(): boolean {
+  public compile(): boolean {
     this.stage()
-    return this.builder.build(this.themes)
+
+    this.builder.build(this.themes)
+
+    return this.updatePackageJSON()
   }
 }

@@ -2,9 +2,9 @@ import { mockClean, mockDir } from '@mock/setup'
 import { Code } from './code'
 
 describe('Code', () => {
-  const { dist, themes } = mockDir()
+  const { root, dist, themes } = mockDir()
 
-  const code = new Code({ dir: { dist, themes } })
+  const code = new Code({ paths: { root, dist, themes } })
 
   afterAll(() => {
     mockClean()

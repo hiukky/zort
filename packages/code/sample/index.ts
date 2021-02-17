@@ -1,6 +1,8 @@
 import { mockDir } from '@mock/setup'
 import { Code } from '../src/code'
 
-const { dist, themes } = mockDir(__dirname)
+const { root, dist, themes } = mockDir(__dirname)
 
-new Code({ dir: { dist, themes } }).compile()
+new Code({ paths: { root, dist, themes } })
+  .set({ type: 'dark', fontStyle: ['bold', 'italic'] })
+  .compile()

@@ -1,0 +1,73 @@
+{
+  "name": "sample",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "typings": "dist/code.d.ts",
+  "description": "Theme builder for VS Code.",
+  "version": "0.1.0-alpha.7",
+  "author": {
+    "name": "Romullo",
+    "email": "developermarsh@gmail.com",
+    "url": "https://hiukky.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hiukky/zort/issues"
+  },
+  "homepage": "https://github.com/hiukky/zort#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hiukky/zort"
+  },
+  "scripts": {
+    "dev": "tsnd --respawn -r tsconfig-paths/register sample/index.ts",
+    "prebuild": "rimraf dist",
+    "build": "esbuild index.ts --outfile=dist/index.js --bundle --platform=node --minify",
+    "postbuild": "tsc -p tsconfig.build.json",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:cov": "jest --coverage"
+  },
+  "devDependencies": {
+    "esbuild": "0.8.46",
+    "rimraf": "3.0.2",
+    "ts-node-dev": "1.1.1",
+    "tsconfig-paths": "3.9.0"
+  },
+  "dependencies": {
+    "@zort/core": "0.1.0-alpha.7"
+  },
+  "files": [
+    "dist",
+    "meta"
+  ],
+  "contributes": {
+    "themes": [
+      {
+        "label": "Package",
+        "uiTheme": "vs-dark",
+        "path": "./dist/package.json"
+      },
+      {
+        "label": "Zort Aye Bold",
+        "uiTheme": "vs-dark",
+        "path": "./dist/zort-aye/zort.aye.bold.json"
+      },
+      {
+        "label": "Zort Aye Italic",
+        "uiTheme": "vs-dark",
+        "path": "./dist/zort-aye/zort.aye.italic.json"
+      },
+      {
+        "label": "Zort Bold",
+        "uiTheme": "vs-dark",
+        "path": "./dist/zort/zort.bold.json"
+      },
+      {
+        "label": "Zort Italic",
+        "uiTheme": "vs-dark",
+        "path": "./dist/zort/zort.italic.json"
+      }
+    ]
+  }
+}
