@@ -1,32 +1,16 @@
-import { File, Builder, IBuilder } from '@zort/core'
+import { IBuilder } from '@zort/core'
 import { IUlauncher } from './ulauncher.interface'
+import { UlauncherBuilder } from './ulauncher.builder'
 
 export class Ulauncher implements IUlauncher.Builder {
   private metadata: IUlauncher.Schema
-
   private themes: IBuilder.Theme
-
-  private builder: Builder
+  private builder: UlauncherBuilder
 
   constructor(props: IBuilder.Props) {
-    this.builder = new Builder(props)
-
-    this.metadata = {} as IUlauncher.Schema
-    this.themes = {} as IBuilder.Theme
-
-    this.assemble()
-  }
-
-  private get files(): IUlauncher.Files[] {
-    return ['manifest.json', 'theme-gtk-3.20.css', 'theme.css']
-  }
-
-  private assemble(): this {
-    Object.values(this.files).forEach(file => {
-      this.metadata[file] = File.read(__dirname, '..', 'meta', file)
-    })
-
-    return this
+    this.builder = new UlauncherBuilder(props)
+    this.metadata = this.builder.files
+    this.themes = {}
   }
 
   private stage(): this {
@@ -39,6 +23,7 @@ export class Ulauncher implements IUlauncher.Builder {
 
   compile(): boolean {
     this.stage()
-    return this.builder.build(this.themes)
+    this.builder.build(this.themes)
+    return true
   }
 }
