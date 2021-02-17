@@ -1,5 +1,4 @@
 import { Builder, File } from '@zort/core'
-import glob from 'glob'
 import { ICode, ISchema } from './code.interface'
 
 export class CodeBuilder extends Builder {
@@ -14,14 +13,6 @@ export class CodeBuilder extends Builder {
     type: ISchema.IType,
   ): ICode.Manifest {
     return { name: this.themeName(variant), variant, type }
-  }
-
-  public listThemesBuilt(): string[] {
-    const { dist } = this.props.paths
-
-    return glob
-      .sync(`${dist}/**/*.json`)
-      .map(path => `./${path?.replace(dist.replace(/[^/]+$/g, ''), '')}`)
   }
 
   public getPkgMetadata(type: ISchema.IType): ICode.ContributeSchema[] {

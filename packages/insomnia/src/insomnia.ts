@@ -1,66 +1,26 @@
-import { File, Builder, IBuilder } from '@zort/core'
+import { IBuilder } from '@zort/core'
 import { IInsomnia } from './insomnia.interface'
+import { InsomniaBuilder } from './insomnia.builder'
 
 export class Insomnia implements IInsomnia.Builder {
   private metadata: IInsomnia.Schema
 
   private themes: IBuilder.Theme
 
-  private builder: Builder
+  private builder: InsomniaBuilder
 
   constructor(props: IBuilder.Props) {
-    this.builder = new Builder(props)
+    this.builder = new InsomniaBuilder(props)
 
-    this.themes = {} as IBuilder.Theme
-    this.metadata = {} as IInsomnia.Schema
-
-    this.assemble()
-  }
-
-  private assemble(): this {
-    this.metadata = JSON.parse(
-      File.read(__dirname, '..', 'meta', 'schema.json'),
-    )
-
-    return this
-  }
-
-  private manifestFor(
-    variant: string,
-  ): Record<'displayName' | 'variant' | 'name', string> {
-    return {
-      displayName: this.builder.themeName(variant),
-      name: variant,
-      variant,
-    }
-  }
-
-  private generateMainFile(): boolean {
-    const payload: string[] = []
-
-    Object.entries(this.themes).forEach(([, files]) => {
-      Object.keys(files).forEach(fileName => {
-        payload.push(`require('./${fileName}')`)
-      })
-    })
-
-    File.create({
-      fileName: 'index.js',
-      path: this.builder.props.paths.dist,
-      matadata: `module.exports.themes = ${JSON.stringify(payload).replaceAll(
-        '"',
-        '',
-      )}`,
-    })
-
-    return true
+    this.metadata = this.builder.files
+    this.themes = {}
   }
 
   private stage(): this {
     Object.keys(this.builder.variants).forEach(variant => {
       this.themes[variant] = {
         [`${variant}.json`]: JSON.stringify({
-          ...this.manifestFor(variant),
+          ...this.builder.generateManifest(variant),
           ...this.metadata,
         }),
       }
@@ -71,9 +31,7 @@ export class Insomnia implements IInsomnia.Builder {
 
   compile(): boolean {
     this.stage()
-
-    this.builder.build(this.themes)
-
-    return this.generateMainFile()
+    this.builder.build(this.themes).generateMainFile()
+    return true
   }
 }

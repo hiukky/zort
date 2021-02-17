@@ -37,12 +37,6 @@ describe('CodeBuilder', () => {
     })
   })
 
-  describe('ListThemesBuilt', () => {
-    it('should list all compiled themes in a directory', () => {
-      expect(builder.listThemesBuilt()).toEqual(['./temp/zort.json'])
-    })
-  })
-
   describe('GetPkgMetadata', () => {
     it('should generate a metadata for the compiled dark themes', () => {
       expect(builder.getPkgMetadata('dark')).toEqual([

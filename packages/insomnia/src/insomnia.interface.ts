@@ -44,5 +44,7 @@ export namespace IInsomnia {
     }
   }
 
+  export type Manifest = Record<'displayName' | 'variant' | 'name', string>
+
   export interface Builder extends IBuilder.Common {}
 }
