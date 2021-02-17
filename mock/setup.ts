@@ -1,5 +1,5 @@
 import { join } from 'path'
-import { sync } from 'rimraf'
+import { sync } from 'del'
 
 export const mockDir = (dir = __dirname) => ({
   root: dir,
@@ -9,7 +9,8 @@ export const mockDir = (dir = __dirname) => ({
   temp: join(__dirname, 'temp'),
 })
 
-export const mockClean = () => sync(mockDir().dist)
+export const mockClean = () =>
+  sync([`${__dirname}/temp/*.js`, `${__dirname}/dist`])
 
 export const mockSchemaJSON = () => ({
   oneFile: {

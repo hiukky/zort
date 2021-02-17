@@ -23,6 +23,7 @@
     "url": "https://github.com/hiukky/zort"
   },
   "scripts": {
+    "clean": "rimraf dist",
     "postinstall": "husky install",
     "test": "yarn jest",
     "test:cov": "yarn jest --coverage",
@@ -38,6 +39,7 @@
     "@types/rimraf": "^3.0.0",
     "@typescript-eslint/eslint-plugin": "^4.15.1",
     "@typescript-eslint/parser": "^4.15.1",
+    "del": "^6.0.0",
     "eslint": "^7.20.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-config-prettier": "^7.2.0",
