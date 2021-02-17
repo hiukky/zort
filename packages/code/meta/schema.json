@@ -74,7 +74,7 @@
     "walkThrough.embeddedEditorBackground": "$primary-color",
     "widget.shadow": "#00000000"
   },
-  "token-colors": [
+  "tokenColors": [
     {
       "name": "Beige",
       "scope": [

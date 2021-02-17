@@ -22,7 +22,7 @@ describe('CodeBuilder', () => {
 
       expect(files).toEqual({
         colors: expect.any(Object),
-        'token-colors': expect.any(Array),
+        tokenColors: expect.any(Array),
       })
     })
   })
