@@ -17,7 +17,7 @@ export class Builder {
       .join(' ')
   }
 
-  public build(themes: IBuilder.Theme): boolean {
+  public build(themes: IBuilder.Theme): this {
     const { dist } = this.props.paths
 
     Object.entries(themes).forEach(([themeName, files]) => {
@@ -37,6 +37,6 @@ export class Builder {
       })
     })
 
-    return true
+    return this
   }
 }

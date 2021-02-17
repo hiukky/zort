@@ -21,11 +21,11 @@ describe('Builder', () => {
     const { oneFile, manyFiles, invalid } = mockSchemaJSON()
 
     it('you should build a simple JSON theme', () => {
-      expect(builder.build(oneFile)).toBe(true)
+      expect(builder.build(oneFile)).toBeInstanceOf(Builder)
     })
 
     it('you must build a separate theme in a folder with several files', () => {
-      expect(builder.build(manyFiles)).toBe(true)
+      expect(builder.build(manyFiles)).toBeInstanceOf(Builder)
     })
 
     it('should return an error for a thema with undefined styles', () => {
