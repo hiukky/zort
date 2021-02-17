@@ -4,7 +4,7 @@ export namespace IBuilder {
   }
 
   export type Props = {
-    dir: Record<'dist' | 'themes', string>
+    paths: Record<'root' | 'dist' | 'themes', string>
   }
 
   export type Theme = Record<string, Record<string, string>>

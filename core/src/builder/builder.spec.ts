@@ -2,9 +2,9 @@ import { mockClean, mockSchemaJSON, mockDir } from '@mock/setup'
 import { Builder } from './builder'
 
 describe('Builder', () => {
-  const { dist, themes } = mockDir()
+  const { dist, themes, root } = mockDir()
 
-  const builder = new Builder({ dir: { dist, themes } })
+  const builder = new Builder({ paths: { root, dist, themes } })
 
   afterEach(() => {
     mockClean()

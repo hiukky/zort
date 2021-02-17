@@ -46,7 +46,7 @@ export class Insomnia implements IInsomnia.Builder {
 
     File.create({
       fileName: 'index.js',
-      path: this.builder.props.dir.dist,
+      path: this.builder.props.paths.dist,
       matadata: `module.exports.themes = ${JSON.stringify(payload).replaceAll(
         '"',
         '',

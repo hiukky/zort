@@ -2,10 +2,11 @@ import { join } from 'path'
 import { sync } from 'rimraf'
 
 export const mockDir = (dir = __dirname) => ({
-  themes: join(__dirname, 'themes'),
-  temp: join(__dirname, 'temp'),
+  root: dir,
   meta: join(dir, 'meta'),
   dist: join(dir, 'dist'),
+  themes: join(__dirname, 'themes'),
+  temp: join(__dirname, 'temp'),
 })
 
 export const mockClean = () => sync(mockDir().dist)

@@ -7,7 +7,7 @@ export class Builder {
 
   constructor(props: IBuilder.Props) {
     this.props = props
-    this.variants = SCSS.readAllForJSON(props.dir.themes)
+    this.variants = SCSS.readAllForJSON(props.paths.themes)
   }
 
   public themeName(variant: string) {
@@ -18,7 +18,7 @@ export class Builder {
   }
 
   public build(themes: IBuilder.Theme): boolean {
-    const { dist } = this.props.dir
+    const { dist } = this.props.paths
 
     Object.entries(themes).forEach(([themeName, files]) => {
       const dirname =

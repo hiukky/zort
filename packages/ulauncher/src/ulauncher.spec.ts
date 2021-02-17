@@ -2,9 +2,9 @@ import { mockClean, mockDir } from '@mock/setup'
 import { Ulauncher } from './ulauncher'
 
 describe('Ulauncher', () => {
-  const { dist, themes } = mockDir()
+  const { root, dist, themes } = mockDir()
 
-  const ulauncher = new Ulauncher({ dir: { dist, themes } })
+  const ulauncher = new Ulauncher({ paths: { root, dist, themes } })
 
   afterAll(() => {
     mockClean()
