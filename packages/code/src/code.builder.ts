@@ -1,4 +1,5 @@
 import { Builder, File } from '@zort/core'
+import { createVSIX } from 'vsce'
 import { ICode, ISchema } from './code.interface'
 
 export class CodeBuilder extends Builder {
@@ -21,6 +22,10 @@ export class CodeBuilder extends Builder {
       uiTheme: type === 'light' ? 'vs' : 'vs-dark',
       path: dir,
     }))
+  }
+
+  public async createExtension(): Promise<void> {
+    await createVSIX({ cwd: this.props.paths.root })
   }
 
   public updatePkgJSON(type: ISchema.IType): this {

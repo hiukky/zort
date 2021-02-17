@@ -14,6 +14,7 @@ export namespace ICode {
   export type Options = {
     type: ISchema.IType
     fontStyle: ISchema.FontStyle[]
+    extension: boolean
   }
 
   export type Schema = {

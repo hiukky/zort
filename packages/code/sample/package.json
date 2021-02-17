@@ -1,6 +1,9 @@
 {
-  "name": "sample",
+  "name": "zort",
+  "version": "0.1.0",
+  "displayName": "Zort",
   "description": "Theme builder for VS Code.",
+  "publisher": "hiukky",
   "author": {
     "name": "Romullo",
     "email": "developermarsh@gmail.com",
@@ -15,6 +18,12 @@
     "type": "git",
     "url": "https://github.com/hiukky/zort"
   },
+  "engines": {
+    "vscode": "^1.44.0"
+  },
+  "categories": [
+    "Themes"
+  ],
   "contributes": {
     "themes": [
       {

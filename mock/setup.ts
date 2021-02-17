@@ -10,7 +10,7 @@ export const mockDir = (dir = __dirname) => ({
 })
 
 export const mockClean = () =>
-  sync([`${__dirname}/temp/*.js`, `${__dirname}/dist`])
+  sync([`${__dirname}/temp/*.js`, `${__dirname}/dist`, `${__dirname}/*.vsix`])
 
 export const mockSchemaJSON = () => ({
   oneFile: {
@@ -66,6 +66,11 @@ export const mockSCSSSchemaJSON = () => ({
 
 export const mockPkgJSON = () => ({
   name: 'mock',
+  version: '0.0.0',
+  publisher: 'hiukky',
+  engines: {
+    vscode: '^1.44.0',
+  },
   author: {
     name: 'Romullo',
     email: 'developermarsh@gmail.com',

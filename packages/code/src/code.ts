@@ -16,6 +16,7 @@ export class Code implements ICode.Builder {
     this.options = {
       type: 'dark',
       fontStyle: ['none'],
+      extension: true,
     }
   }
 
@@ -42,14 +43,19 @@ export class Code implements ICode.Builder {
     return this
   }
 
-  public set(options: ICode.Props): this {
+  public set(options: Partial<ICode.Props>): this {
     this.options = { ...this.options, ...options }
     return this
   }
 
-  public compile(): boolean {
+  public async compile(): Promise<boolean> {
     this.stage()
     this.builder.build(this.themes).updatePkgJSON(this.options.type)
+
+    if (this.options.extension) {
+      await this.builder.createExtension()
+    }
+
     return true
   }
 }
