@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-alpha.9](https://github.com/hiukky/zort/compare/v0.1.0-alpha.8...v0.1.0-alpha.9) (2021-02-17)
+
+
+### Bug Fixes
+
+* **code:** vsce build using yarn ([c8f04e7](https://github.com/hiukky/zort/commit/c8f04e76be737c8f55fe2dd41a7cc4299810992e))
+
+
+
+
+
 # [0.1.0-alpha.8](https://github.com/hiukky/zort/compare/v0.1.0-alpha.7...v0.1.0-alpha.8) (2021-02-17)
 
 
