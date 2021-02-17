@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-alpha.8](https://github.com/hiukky/zort/compare/v0.1.0-alpha.7...v0.1.0-alpha.8) (2021-02-17)
+
+
+### Features
+
+* **core:** add method for consulting compiled themes ([458f521](https://github.com/hiukky/zort/commit/458f521d2bf004000b61661a1ecf0c9412987fa7))
+
+
+
+
+
 # [0.1.0-alpha.7](https://github.com/hiukky/zort/compare/v0.1.0-alpha.6...v0.1.0-alpha.7) (2021-02-17)
 
 **Note:** Version bump only for package @zort/core

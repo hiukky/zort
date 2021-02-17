@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-alpha.8](https://github.com/hiukky/zort/compare/v0.1.0-alpha.7...v0.1.0-alpha.8) (2021-02-17)
+
+
+### Bug Fixes
+
+* **ulauncher:** samples ([6f7144c](https://github.com/hiukky/zort/commit/6f7144c31f1ae45c0396481d6b49215cfaccaa22))
+
+
+### Features
+
+* **code:** added dedicated builder ([4580a84](https://github.com/hiukky/zort/commit/4580a843f5191a10fb0bc1ea72e50b0350a016f2))
+* **code:** installer for vscode ([458e0aa](https://github.com/hiukky/zort/commit/458e0aa5ec8a3edb04487c10c07214f19c60a19f))
+* **core:** add method for consulting compiled themes ([458f521](https://github.com/hiukky/zort/commit/458f521d2bf004000b61661a1ecf0c9412987fa7))
+* **core:** update package.json after build ([43adbc2](https://github.com/hiukky/zort/commit/43adbc29124023b60df4f06997c0c6bba6251546))
+* **insomnia:** added dedicated builder ([e849aeb](https://github.com/hiukky/zort/commit/e849aebd90dae656d45defc5a08a0070572c1c1c))
+* **ulauncher:** added dedicated builder ([e76e67c](https://github.com/hiukky/zort/commit/e76e67c9daed4bfc48dbb5e8155f64989678cac8))
+
+
+
+
+
 # [0.1.0-alpha.7](https://github.com/hiukky/zort/compare/v0.1.0-alpha.6...v0.1.0-alpha.7) (2021-02-17)
 
 **Note:** Version bump only for package root

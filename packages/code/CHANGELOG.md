@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-alpha.8](https://github.com/hiukky/zort/compare/v0.1.0-alpha.7...v0.1.0-alpha.8) (2021-02-17)
+
+
+### Features
+
+* **code:** added dedicated builder ([4580a84](https://github.com/hiukky/zort/commit/4580a843f5191a10fb0bc1ea72e50b0350a016f2))
+* **code:** installer for vscode ([458e0aa](https://github.com/hiukky/zort/commit/458e0aa5ec8a3edb04487c10c07214f19c60a19f))
+* **core:** update package.json after build ([43adbc2](https://github.com/hiukky/zort/commit/43adbc29124023b60df4f06997c0c6bba6251546))
+* **insomnia:** added dedicated builder ([e849aeb](https://github.com/hiukky/zort/commit/e849aebd90dae656d45defc5a08a0070572c1c1c))
+
+
+
+
+
 # [0.1.0-alpha.7](https://github.com/hiukky/zort/compare/v0.1.0-alpha.6...v0.1.0-alpha.7) (2021-02-17)
 
 **Note:** Version bump only for package @zort/code

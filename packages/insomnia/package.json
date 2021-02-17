@@ -4,7 +4,7 @@
   "module": "dist/index.js",
   "typings": "dist/insomnia.d.ts",
   "description": "Theme builder for Insomnia.",
-  "version": "0.1.0-alpha.7",
+  "version": "0.1.0-alpha.8",
   "author": {
     "name": "Romullo",
     "email": "developermarsh@gmail.com",
@@ -35,7 +35,7 @@
     "tsconfig-paths": "3.9.0"
   },
   "dependencies": {
-    "@zort/core": "0.1.0-alpha.7"
+    "@zort/core": "0.1.0-alpha.8"
   },
   "files": [
     "dist",

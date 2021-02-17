@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-alpha.8](https://github.com/hiukky/zort/compare/v0.1.0-alpha.7...v0.1.0-alpha.8) (2021-02-17)
+
+
+### Features
+
+* **insomnia:** added dedicated builder ([e849aeb](https://github.com/hiukky/zort/commit/e849aebd90dae656d45defc5a08a0070572c1c1c))
+
+
+
+
+
 # [0.1.0-alpha.7](https://github.com/hiukky/zort/compare/v0.1.0-alpha.6...v0.1.0-alpha.7) (2021-02-17)
 
 **Note:** Version bump only for package @zort/insomnia
