@@ -28,7 +28,7 @@
     "test:cov": "jest --coverage"
   },
   "devDependencies": {
-    "esbuild": "0.8.46"
+    "esbuild": "0.8.50"
   },
   "files": [
     "dist"
