@@ -3,27 +3,29 @@ import { IUlauncher } from './ulauncher.interface'
 import { UlauncherBuilder } from './ulauncher.builder'
 
 export class Ulauncher implements IUlauncher.Builder {
-  private metadata: IUlauncher.Schema
   private themes: IBuilder.Theme
   private builder: UlauncherBuilder
 
   constructor(props: IBuilder.Props) {
     this.builder = new UlauncherBuilder(props)
-    this.metadata = this.builder.files
     this.themes = {}
   }
 
-  private stage(): this {
-    Object.keys(this.builder.variants).forEach(variant => {
-      this.themes[variant] = this.metadata
+  private async stage(): Promise<this> {
+    const variants = await this.builder.variants()
+
+    Object.keys(variants).forEach(async variant => {
+      this.themes[variant] = await this.builder.files()
     })
 
     return this
   }
 
-  compile(): boolean {
-    this.stage()
-    this.builder.build(this.themes)
+  async compile(): Promise<boolean> {
+    await this.stage()
+
+    await this.builder.build(this.themes)
+
     return true
   }
 }

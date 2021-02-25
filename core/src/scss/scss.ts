@@ -16,16 +16,19 @@ export class SCSS {
     return data
   }
 
-  static read(path: string, fileName: string): ISCSS.JSON {
-    const file = File.read(`${path}/${fileName}`).split(';')
+  static async read(path: string, fileName: string): Promise<ISCSS.JSON> {
+    const file = (await File.read(`${path}/${fileName}`)).split(';')
 
-    const [dependencies] = file
-      .filter(row => /@import/.test(row))
-      .map(row => {
-        const key = row.split(' ')[1].slice(1, -1)
-
-        return this.toJSON(File.read(`${path}/_${key.replace('./', '')}.scss`))
-      })
+    const [dependencies] = (
+      await Promise.all(
+        file
+          .filter(row => /@import/.test(row))
+          .map(async row => {
+            const key = row.split(' ')[1].slice(1, -1)
+            return File.read(`${path}/_${key.replace('./', '')}.scss`)
+          }),
+      )
+    ).map(data => this.toJSON(data))
 
     const mergedDependencies = Object.entries(
       this.toJSON(file.filter(row => !/@import/.test(row)).join(';')),
@@ -54,20 +57,25 @@ export class SCSS {
     return output
   }
 
-  static readAllForJSON(path: string): ISCSS.Schema {
-    return File.list(path)
-      .filter(fileName => !fileName.startsWith('_'))
-      .map(fileName => {
-        if (!/.\.scss$/.test(fileName)) {
-          throw new Error(
-            'The informed directory does not contain valid SCSS files.',
-          )
-        }
+  static async readAllForJSON(path: string): ISCSS.Schema {
+    const files = await File.list(path)
 
-        return {
-          [fileName.replace('.scss', '')]: this.read(path, fileName),
-        }
-      })
-      .reduce((a, b) => ({ ...a, ...b }))
+    const data = await Promise.all(
+      files
+        .filter(fileName => !fileName.startsWith('_'))
+        .map(async fileName => {
+          if (!/.\.scss$/.test(fileName)) {
+            throw new Error(
+              'The informed directory does not contain valid SCSS files.',
+            )
+          }
+
+          return {
+            [fileName.replace('.scss', '')]: await this.read(path, fileName),
+          }
+        }),
+    )
+
+    return data.reduce((a, b) => ({ ...a, ...b }))
   }
 }

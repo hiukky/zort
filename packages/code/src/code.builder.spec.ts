@@ -6,10 +6,10 @@ describe('CodeBuilder', () => {
   const { root, themes, temp, dist } = mockDir()
   const builder = new CodeBuilder({ paths: { root, dist: temp, themes } })
 
-  afterEach(() => {
-    mockClean()
+  afterEach(async () => {
+    await mockClean()
 
-    File.create({
+    await File.create({
       fileName: 'package.json',
       path: root,
       matadata: JSON.stringify(mockPkgJSON(), null, 2),
@@ -17,10 +17,8 @@ describe('CodeBuilder', () => {
   })
 
   describe('Files', () => {
-    it('should return an object containing the metadata needed to compile the theme', () => {
-      const { files } = builder
-
-      expect(files).toEqual({
+    it('should return an object containing the metadata needed to compile the theme', async () => {
+      expect(builder.files()).resolves.toEqual({
         colors: expect.any(Object),
         tokenColors: expect.any(Array),
       })
@@ -38,8 +36,8 @@ describe('CodeBuilder', () => {
   })
 
   describe('GetPkgMetadata', () => {
-    it('should generate a metadata for the compiled dark themes', () => {
-      expect(builder.getPkgMetadata('dark')).toEqual([
+    it('should generate a metadata for the compiled dark themes', async () => {
+      expect(builder.getPkgMetadata('dark')).resolves.toEqual([
         {
           label: 'Zort',
           uiTheme: 'vs-dark',
@@ -48,8 +46,8 @@ describe('CodeBuilder', () => {
       ])
     })
 
-    it('should generate a metadata for the compiled light themes', () => {
-      expect(builder.getPkgMetadata('light')).toEqual([
+    it('should generate a metadata for the compiled light themes', async () => {
+      expect(builder.getPkgMetadata('light')).resolves.toEqual([
         {
           label: 'Zort',
           uiTheme: 'vs',
@@ -60,10 +58,10 @@ describe('CodeBuilder', () => {
   })
 
   describe('UpdatePkgJSON', () => {
-    it('should update the package.json with the metadata of the compiled themes', () => {
-      expect(builder.updatePkgJSON('dark')).toBeInstanceOf(CodeBuilder)
+    it('should update the package.json with the metadata of the compiled themes', async () => {
+      await builder.updatePkgJSON('dark')
 
-      const pkgJSONUpdated = JSON.parse(File.read(root, 'package.json'))
+      const pkgJSONUpdated = JSON.parse(await File.read(root, 'package.json'))
 
       expect(pkgJSONUpdated).toMatchObject({
         ...mockPkgJSON(),
@@ -79,12 +77,12 @@ describe('CodeBuilder', () => {
       })
     })
 
-    it('should return an error for a package.json not found', () => {
-      expect(() =>
-        new CodeBuilder({ paths: { root: dist, dist, themes } }).updatePkgJSON(
-          'dark',
-        ),
-      ).toThrow('No package.json was found in the project directory.')
+    it('should return an error for a package.json not found', async () => {
+      expect(
+        new CodeBuilder({
+          paths: { root: dist, dist, themes },
+        }).updatePkgJSON('dark'),
+      ).rejects.toThrow('No package.json was found in the project directory.')
     })
   })
 })

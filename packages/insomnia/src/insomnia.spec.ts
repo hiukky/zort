@@ -11,8 +11,8 @@ describe('Insomnia', () => {
   })
 
   describe('Build', () => {
-    it('should successfully a theme for Insomnia', () => {
-      expect(insomnia.compile()).toBe(true)
+    it('should successfully a theme for Insomnia', async () => {
+      expect(insomnia.compile()).resolves.toBe(true)
     })
   })
 })

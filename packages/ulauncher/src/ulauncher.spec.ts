@@ -6,13 +6,13 @@ describe('Ulauncher', () => {
 
   const ulauncher = new Ulauncher({ paths: { root, dist, themes } })
 
-  afterAll(() => {
-    mockClean()
+  afterAll(async () => {
+    await mockClean()
   })
 
   describe('Build', () => {
-    it('should successfully a theme for Ulauncher', () => {
-      expect(ulauncher.compile()).toBe(true)
+    it('should successfully a theme for Ulauncher', async () => {
+      expect(ulauncher.compile()).resolves.toBe(true)
     })
   })
 })

@@ -1,5 +1,5 @@
 import { join } from 'path'
-import { sync } from 'del'
+import del from 'del'
 
 export const mockDir = (dir = __dirname) => ({
   root: dir,
@@ -9,8 +9,10 @@ export const mockDir = (dir = __dirname) => ({
   temp: join(__dirname, 'temp'),
 })
 
-export const mockClean = () =>
-  sync([`${__dirname}/temp/*.js`, `${__dirname}/dist`, `${__dirname}/*.vsix`])
+export const mockClean = async () =>
+  del([`${__dirname}/temp/*.js`, `${__dirname}/dist`, `${__dirname}/*.vsix`], {
+    force: true,
+  })
 
 export const mockSchemaJSON = () => ({
   oneFile: {

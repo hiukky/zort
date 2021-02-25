@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-alpha.10](https://github.com/hiukky/zort/compare/v0.1.0-alpha.9...v0.1.0-alpha.10) (2021-02-26)
+
+
+### Bug Fixes
+
+* **code:** schema typos ([d54e592](https://github.com/hiukky/zort/commit/d54e59212807dcdf2bc44bed2e4bcf72de768cb7))
+
+
+
+
+
 # [0.1.0-alpha.9](https://github.com/hiukky/zort/compare/v0.1.0-alpha.8...v0.1.0-alpha.9) (2021-02-17)
 
 

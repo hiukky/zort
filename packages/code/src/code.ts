@@ -4,7 +4,6 @@ import { CodeBuilder } from './code.builder'
 
 export class Code implements ICode.Builder {
   private options: ICode.Props
-  private metadata: ICode.Schema
   private themes: IBuilder.Theme
   private builder: CodeBuilder
 
@@ -12,7 +11,6 @@ export class Code implements ICode.Builder {
     this.builder = new CodeBuilder(props)
 
     this.themes = {}
-    this.metadata = this.builder.files
     this.options = {
       type: 'dark',
       fontStyle: ['none'],
@@ -20,10 +18,13 @@ export class Code implements ICode.Builder {
     }
   }
 
-  private stage(): this {
+  private async stage(): Promise<this> {
     const { fontStyle, type } = this.options
 
-    Object.keys(this.builder.variants).forEach(variant => {
+    const metadata = await this.builder.files()
+    const variants = await this.builder.variants()
+
+    Object.keys(variants).forEach(variant => {
       fontStyle.forEach(fontType => {
         const themeName =
           fontType === 'none'
@@ -34,7 +35,7 @@ export class Code implements ICode.Builder {
           ...this.themes[variant],
           [themeName]: JSON.stringify({
             ...this.builder.generateManifest(variant, type),
-            ...this.metadata,
+            ...metadata,
           }).replaceAll('$fontStyle', fontType),
         }
       })
@@ -49,8 +50,11 @@ export class Code implements ICode.Builder {
   }
 
   public async compile(): Promise<boolean> {
-    this.stage()
-    this.builder.build(this.themes).updatePkgJSON(this.options.type)
+    await this.stage()
+
+    await this.builder.build(this.themes)
+
+    await this.builder.updatePkgJSON(this.options.type)
 
     if (this.options.extension) {
       await this.builder.createExtension()

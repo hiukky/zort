@@ -7,10 +7,10 @@ describe('Code', () => {
 
   const code = new Code({ paths: { root, dist, themes } })
 
-  afterEach(() => {
-    mockClean()
+  afterEach(async () => {
+    await mockClean()
 
-    File.create({
+    await File.create({
       fileName: 'package.json',
       path: root,
       matadata: JSON.stringify(mockPkgJSON(), null, 2),

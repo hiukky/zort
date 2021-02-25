@@ -4,11 +4,12 @@ import { File, SCSS, IBuilder, ISCSS } from '..'
 export class Builder {
   public props: IBuilder.Props
 
-  public variants: ISCSS.Schema
-
   constructor(props: IBuilder.Props) {
     this.props = props
-    this.variants = SCSS.readAllForJSON(props.paths.themes)
+  }
+
+  public async variants(): Promise<ISCSS.Schema> {
+    return SCSS.readAllForJSON(this.props.paths.themes)
   }
 
   public themeName(variant: string) {
@@ -18,16 +19,26 @@ export class Builder {
       .join(' ')
   }
 
-  public listThemesBuilt(): string[] {
+  public listThemesBuilt(): Promise<string[]> {
     const { dist } = this.props.paths
 
-    return glob
-      .sync(`${dist}/**/*.json`)
-      .map(path => `./${path?.replace(dist.replace(/[^/]+$/g, ''), '')}`)
+    return new Promise((resolve, reject) => {
+      glob(`${dist}/**/*.json`, (err, data) =>
+        data
+          ? resolve(
+              data.map(
+                path => `./${path?.replace(dist.replace(/[^/]+$/g, ''), '')}`,
+              ),
+            )
+          : reject(err),
+      )
+    })
   }
 
-  public build(themes: IBuilder.Theme): this {
+  public async build(themes: IBuilder.Theme): Promise<this> {
     const { dist } = this.props.paths
+
+    const variants = await this.variants()
 
     Object.entries(themes).forEach(([themeName, files]) => {
       const dirname =
@@ -35,7 +46,7 @@ export class Builder {
           ? dist
           : `${dist}/${themeName.replace('.', '-')}`
 
-      const merged = SCSS.merge(files, this.variants[themeName])
+      const merged = SCSS.merge(files, variants[themeName])
 
       Object.entries(merged).forEach(([name, metadata]) => {
         File.create({

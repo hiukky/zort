@@ -5,8 +5,10 @@ describe('SCSS', () => {
   const { themes, temp } = mockDir()
 
   describe('Read', () => {
-    it('should read an scss file', () => {
-      expect(SCSS.read(themes, 'zort.scss')).toEqual(mockSCSSSchemaJSON())
+    it('should read an scss file', async () => {
+      expect(SCSS.read(themes, 'zort.scss')).resolves.toEqual(
+        mockSCSSSchemaJSON(),
+      )
     })
   })
 
@@ -25,15 +27,15 @@ describe('SCSS', () => {
   })
 
   describe('ReadAllForJSON', () => {
-    it('should read all SCSS files from a directory and return an object with key (file name) and value (SCSS contents).', () => {
-      expect(SCSS.readAllForJSON(themes)).toEqual({
+    it('should read all SCSS files from a directory and return an object with key (file name) and value (SCSS contents).', async () => {
+      expect(SCSS.readAllForJSON(themes)).resolves.toEqual({
         zort: mockSCSSSchemaJSON(),
         'zort.aye': { ...mockSCSSSchemaJSON(), '$secondary-color': '#e84855' },
       })
     })
 
-    it('should return an error for directorico that does not contain SCSS files', () => {
-      expect(() => SCSS.readAllForJSON(temp)).toThrow(
+    it('should return an error for directorico that does not contain SCSS files', async () => {
+      expect(() => SCSS.readAllForJSON(temp)).rejects.toThrow(
         'The informed directory does not contain valid SCSS files.',
       )
     })

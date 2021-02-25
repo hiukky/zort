@@ -5,8 +5,8 @@ import { ICode, ISchema } from './code.interface'
 export class CodeBuilder extends Builder {
   private package: string = ''
 
-  public get files(): ICode.Schema {
-    return JSON.parse(File.read(__dirname, '..', 'meta', 'schema.json'))
+  public async files(): Promise<ICode.Schema> {
+    return JSON.parse(await File.read(__dirname, '..', 'meta', 'schema.json'))
   }
 
   public generateManifest(
@@ -16,8 +16,10 @@ export class CodeBuilder extends Builder {
     return { name: this.themeName(variant), variant, type }
   }
 
-  public getPkgMetadata(type: ISchema.IType): ICode.ContributeSchema[] {
-    return this.listThemesBuilt().map(dir => ({
+  public async getPkgMetadata(
+    type: ISchema.IType,
+  ): Promise<ICode.ContributeSchema[]> {
+    return (await this.listThemesBuilt()).map(dir => ({
       label: this.themeName(dir.replace('.json', '').match(/[^/]+$/g)![0]),
       uiTheme: type === 'light' ? 'vs' : 'vs-dark',
       path: dir,
@@ -28,17 +30,17 @@ export class CodeBuilder extends Builder {
     await createVSIX({ cwd: this.props.paths.root, useYarn: true })
   }
 
-  public updatePkgJSON(type: ISchema.IType): this {
+  public async updatePkgJSON(type: ISchema.IType): Promise<this> {
     try {
       const { root } = this.props.paths
 
-      this.package = JSON.parse(File.read(root, 'package.json'))
+      this.package = JSON.parse(await File.read(root, 'package.json'))
 
       this.package = Object.assign(this.package, {
-        contributes: { themes: this.getPkgMetadata(type) },
+        contributes: { themes: await this.getPkgMetadata(type) },
       })
 
-      File.create({
+      await File.create({
         fileName: 'package.json',
         path: root,
         matadata: JSON.stringify(this.package, null, 2),

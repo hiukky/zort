@@ -11,9 +11,9 @@ export namespace IUlauncher {
     >
   }
 
-  export type Schema = Record<
+  export type Schema<T = string> = Record<
     'manifest.json' | 'theme-gtk-3.20.css' | 'theme.css',
-    string
+    T
   >
 
   export type Files = keyof Schema
