@@ -6,8 +6,8 @@ describe('Insomnia', () => {
 
   const insomnia = new Insomnia({ paths: { root, dist, themes } })
 
-  afterAll(() => {
-    mockClean()
+  afterAll(async () => {
+    await mockClean()
   })
 
   describe('Build', () => {

@@ -19,15 +19,15 @@ describe('Code', () => {
 
   describe('Build', () => {
     it('should successfully a theme for VS Code', async () => {
-      expect(await code.compile()).toBe(true)
+      await expect(code.compile()).resolves.toBe(true)
     })
   })
 
   describe('Set', () => {
     it('should must build the theme with the custom options', async () => {
-      expect(
-        await code.set({ type: 'light', fontStyle: ['italic'] }).compile(),
-      ).toBe(true)
+      await expect(
+        code.set({ type: 'light', fontStyle: ['italic'] }).compile(),
+      ).resolves.toBe(true)
     })
   })
 })
