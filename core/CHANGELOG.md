@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.1.0-alpha.11](https://github.com/hiukky/zort/compare/v0.1.0-alpha.9...v0.1.0-alpha.11) (2021-03-09)
+
+
+### Features
+
+* async ([bcdddcb](https://github.com/hiukky/zort/commit/bcdddcb2859e9137f2d90760426aa48e56e6d96d))
+
+
+
+
+
 # [0.1.0-alpha.10](https://github.com/hiukky/zort/compare/v0.1.0-alpha.9...v0.1.0-alpha.10) (2021-02-26)
 
 **Note:** Version bump only for package @zort/core
