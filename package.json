@@ -24,7 +24,7 @@
   },
   "scripts": {
     "postinstall": "husky install",
-    "test": "yarn jest",
+    "test": "yarn jest --runInBand",
     "test:cov": "yarn jest --coverage",
     "format": "prettier --write \"**/*.ts\"",
     "lint": "yarn eslint \"**/*.ts\" --fix",
